@@ -1,0 +1,49 @@
+# Ignore dependency files
+node_modules/
+vendor/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore compiled files
+*.o
+*.out
+*.class
+*.so
+*.dll
+*.exe
+
+# Ignore build and distribution directories
+dist/
+build/
+target/
+
+# Ignore environment files
+.env
+*.env
+
+# Ignore IDE and editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Ignore Git metadata backup files
+*.orig
+
+# Ignore coverage reports
+coverage/
+*.coverage
+
+# Ignore database files
+*.sqlite
+*.db
+data/
+
+# Ignore generated documentation
+docs/_build/
+
+# Ignore archive files
+*.zip
+*.tar.gz
+*.rar
