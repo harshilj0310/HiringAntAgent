@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import sys
 import tempfile
-import json
 
 # Add root path to import tools
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -13,9 +12,9 @@ from tools.jd_json_jobmatching import match_parsed_resume_to_job
 from tools.send_email import send_email
 
 THRESHOLD = 70
+FIXED_EMAIL = "preetj0310@gmail.com"
 
 st.title("HiringAnt Resume Matcher")
-
 st.sidebar.header("Upload Files")
 
 resume_files = st.sidebar.file_uploader("Upload Resume PDFs", type=["pdf"], accept_multiple_files=True)
@@ -53,28 +52,47 @@ if resume_files and jd_files:
                 result = match_parsed_resume_to_job(resume["data"], jd["data"])
                 score = result.get("gpt_score", "N/A")
                 explanation = result.get("gpt_explanation", "No explanation provided.")
-                email = resume["data"].get("Contact Information", {}).get("email", "")
 
                 matches.append({
                     "resume": resume["filename"],
                     "job": jd["filename"],
                     "score": score,
                     "explanation": explanation,
-                    "email": email
+                    "email": FIXED_EMAIL
                 })
 
-    # Display results
+    # Display results and send emails
     for match in matches:
         st.subheader(f"Resume: {match['resume']} → JD: {match['job']}")
         st.write(f"**Score**: {match['score']}")
-        st.write(f"**Explanation**: {match['explanation']}")
+        st.write(f"**Explanation (Internal View)**: {match['explanation']}")
 
-        if match["email"] and isinstance(match["score"], (int, float)):
+        if isinstance(match["score"], (int, float)):
             if match["score"] >= THRESHOLD:
-                if st.button(f"Send Shortlist Email to {match['email']}", key=f"shortlist-{match['email']}-{match['job']}"):
-                    send_email(match["email"], f"Shortlisted for {match['job']}", match["explanation"])
-                    st.success("Shortlist email sent!")
+                if st.button(f"Send Shortlist Email to {match['email']}", key=f"shortlist-{match['resume']}-{match['job']}"):
+                    subject = f"Congratulations! You've been shortlisted for the position: {match['job']}"
+                    body = f"""Dear Candidate,
+
+We are pleased to inform you that you have been shortlisted for the role "{match['job']}" based on your application.
+
+Our team will reach out to you soon regarding the next steps in the process.
+
+Best regards,  
+Hiring Team"""
+                    send_email(match["email"], subject, body)
+                    st.success(f"Shortlist email sent to {match['email']}!")
             else:
-                if st.button(f"Send Rejection Email to {match['email']}", key=f"reject-{match['email']}-{match['job']}"):
-                    send_email(match["email"], f"Update on {match['job']}", "Thank you for applying. You were not shortlisted.")
-                    st.success("Rejection email sent!")
+                if st.button(f"Send Rejection Email to {match['email']}", key=f"reject-{match['resume']}-{match['job']}"):
+                    subject = f"Update on Your Application for: {match['job']}"
+                    body = f"""Dear Candidate,
+
+Thank you for applying to the position "{match['job']}". We appreciate the time and effort you put into your application.
+
+After careful consideration, we regret to inform you that you have not been shortlisted for this role.
+
+We wish you the very best in your future endeavors and encourage you to apply again for suitable opportunities with us.
+
+Sincerely,  
+Hiring Team"""
+                    send_email(match["email"], subject, body)
+                    st.success(f"Rejection email sent to {match['email']}!")

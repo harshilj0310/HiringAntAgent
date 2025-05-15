@@ -1,75 +1,45 @@
-import json
-from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
-from langchain.chains import LLMChain
-import spacy
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-from dotenv import load_dotenv
+from langchain_openai import ChatOpenAI
 
-
-# Load API key from .env
-load_dotenv()
-
-
-# Initialize GPT model (LangChain)
 llm = ChatOpenAI(model="gpt-4", temperature=0)
 
-# Define a prompt template for GPT-based matching
-matching_prompt = PromptTemplate(
-    input_variables=["resume_data", "job_description"],
+match_prompt = PromptTemplate(
+    input_variables=["resume_json", "jd_json"],
     template="""
-    You are an AI assistant helping with recruitment. Match the following parsed resume data to the job description and provide a match score (0-100) along with a brief explanation:
+You are a hiring assistant. Based on the following Job Description and Resume (both in JSON), evaluate how well the candidate fits the job.
 
-    Resume Data: {resume_data}
-    Job Description: {job_description}
+Job Description:
+{jd_json}
 
-    Output the match score and explanation in JSON format with keys 'score' and 'explanation'.
-    """
+Resume:
+{resume_json}
+
+Respond ONLY in JSON format with:
+- gpt_score: integer score from 0 to 100 indicating match quality.
+- gpt_explanation: short explanation (2-3 lines) for the score.
+
+JSON Output:
+"""
 )
 
-# Create a LangChain chain for GPT-based matching
-matching_chain = matching_prompt | llm
+chain = match_prompt | llm
 
+def match_parsed_resume_to_job(resume_json, jd_json):
+    import json
 
-# Combined function to match parsed resume JSON to job description
-def match_parsed_resume_to_job(resume_json_path, job_description):
-    # Step 1: Load parsed resume JSON file
-    with open(resume_json_path, "r", encoding="utf-8") as file:
-        resume_text = file.read()
-
-    with open(job_description, "r", encoding="utf-8") as file:
-        job_description = file.read()
-
-    # Step 2: Use GPT-based matching logic
-    gpt_response = matching_chain.invoke({"resume_data": resume_text, "job_description": job_description})
-    
     try:
-        gpt_result = json.loads(gpt_response.content)
-        gpt_score = gpt_result.get("score", 0)
-        gpt_explanation = gpt_result.get("explanation", "No explanation provided.")
-    except json.JSONDecodeError:
-        gpt_score = 0
-        gpt_explanation = "Failed to parse GPT response."
+        response = chain.invoke({
+            "resume_json": json.dumps(resume_json),
+            "jd_json": json.dumps(jd_json)
+        })
 
-
-
-    # Step 4: Combine results into a final output
-    final_result = {
-        "gpt_score": gpt_score,
-        "gpt_explanation": gpt_explanation,
-    }
-
-    return final_result
-
-
-
-
-
-
-# Example usage (for testing purposes)
-if __name__ == "__main__":
-    test_resume_path = "C:\\Users\\hp\\hiring-agent\\HiringAntAgent\\data\\processed\\resume.json"
-    test_job_description = "C:\\Users\\hp\\hiring-agent\\HiringAntAgent\\data\\processed\\jd.json"
-    result = match_parsed_resume_to_job(test_resume_path, test_job_description)
-    print(json.dumps(result, indent=4))
+        output = json.loads(response.content.strip())
+        return {
+            "gpt_score": output.get("gpt_score", "N/A"),
+            "gpt_explanation": output.get("gpt_explanation", "No explanation provided.")
+        }
+    except Exception as e:
+        return {
+            "gpt_score": "N/A",
+            "gpt_explanation": f"Error during matching: {str(e)}"
+        }
