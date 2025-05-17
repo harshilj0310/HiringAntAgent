@@ -63,7 +63,7 @@ resume_parsing_tool = Tool(
 # Run the tool
 if __name__ == "__main__":
     try:
-        resume_path = "C:/Users/hp/Downloads/document.pdf"  # Change this to your resume path
+        resume_path = "C:/Users/hp/hiring-agent/HiringAntAgent/Resume/document (3) (1).pdf"  # Change this to your resume path
         parsed_resume = parse_resume(resume_path)
         print(json.dumps(parsed_resume, indent=2))
     except Exception as e:

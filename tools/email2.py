@@ -1,23 +1,16 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import getpass
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-def send_email():
-    from_email = input("Enter your email address: ").strip()
+def send_email(from_email, to_email, subject, body):
     from_password = os.getenv("EMAIL_PASSWORD")
-    """from_password = getpass.getpass("Enter your email password (input hidden): ").strip()"""
-    to_email = input("Enter recipient's email address: ").strip()
-    subject = input("Enter subject of the email: ").strip()
-    body = input("Enter body of the email: ").strip()
 
-    smtp_server = input("Enter SMTP server (default: smtp.gmail.com): ").strip() or "smtp.gmail.com"
-    smtp_port_input = input("Enter SMTP port (default: 587): ").strip()
-    smtp_port = int(smtp_port_input) if smtp_port_input else 587
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
 
     # Create message
     msg = MIMEMultipart()
@@ -37,4 +30,17 @@ def send_email():
         print(f"\n❌ Failed to send email: {e}")
 
 if __name__ == "__main__":
-    send_email()
+    from_email = input("Enter your email address: ").strip()
+    to_email = input("Enter recipient's email address: ").strip()
+
+    # Set these dynamically based on your condition
+    is_selected = True  # Change this as per your logic
+
+    if is_selected:
+        subject = "Congratulations! You have been selected"
+        body = "We are pleased to inform you that you have been selected for the role."
+    else:
+        subject = "Application Update"
+        body = "Thank you for applying. Unfortunately, you have not been selected at this time."
+
+    send_email(from_email, to_email, subject, body)

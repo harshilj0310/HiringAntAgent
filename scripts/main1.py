@@ -1,4 +1,3 @@
-import streamlit as st
 import os
 import sys
 import tempfile
@@ -9,67 +8,72 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from tools.parse_resume import parse_resume
 from tools.JD_parser import parse_job_description
 from tools.jd_json_jobmatching import match_parsed_resume_to_job
-from tools.send_email import send_email
+from tools.email2 import send_email
 
 THRESHOLD = 70
-FIXED_EMAIL = "preetj0310@gmail.com"
 
-st.title("HiringAnt Resume Matcher")
-st.sidebar.header("Upload Files")
+def load_files_from_dir(directory, extensions):
+    files = []
+    for filename in os.listdir(directory):
+        if any(filename.lower().endswith(ext) for ext in extensions):
+            files.append(os.path.join(directory, filename))
+    return files
 
-resume_files = st.sidebar.file_uploader("Upload Resume PDFs", type=["pdf"], accept_multiple_files=True)
-jd_files = st.sidebar.file_uploader("Upload Job Descriptions (.txt or .json)", type=["txt", "json"], accept_multiple_files=True)
+def main():
+    resumes_dir = input("Enter the path to the directory containing resume PDFs: ").strip()
+    jds_dir = input("Enter the path to the directory containing JD (.txt or .json) files: ").strip()
+    from_email = input("Enter the sender email address (your email): ").strip()
 
-if resume_files and jd_files:
-    st.success("Files uploaded. Matching resumes to JDs...")
+    resume_files = load_files_from_dir(resumes_dir, [".pdf"])
+    jd_files = load_files_from_dir(jds_dir, [".txt", ".json"])
+
+    if not resume_files or not jd_files:
+        print("❌ Please ensure both resume and JD directories contain valid files.")
+        return
 
     matches = []
 
     with tempfile.TemporaryDirectory() as tempdir:
-        # Save and parse resumes
         resumes = []
-        for file in resume_files:
-            resume_path = os.path.join(tempdir, file.name)
-            with open(resume_path, "wb") as f:
-                f.write(file.read())
-            parsed_resume = parse_resume(resume_path)
-            resumes.append({"filename": file.name, "data": parsed_resume})
+        for path in resume_files:
+            filename = os.path.basename(path)
+            temp_path = os.path.join(tempdir, filename)
+            with open(path, "rb") as src, open(temp_path, "wb") as dst:
+                dst.write(src.read())
+            parsed_resume = parse_resume(temp_path)
+            to_email = parsed_resume.get("Contact Information", {}).get("Email", "")
+            resumes.append({"filename": filename, "data": parsed_resume, "email": to_email})
 
-        # Save and parse JDs
         jds = []
-        for file in jd_files:
-            jd_path = os.path.join(tempdir, file.name)
-            with open(jd_path, "wb") as f:
-                f.write(file.read())
-            with open(jd_path, "r", encoding="utf-8") as f:
+        for path in jd_files:
+            filename = os.path.basename(path)
+            with open(path, "r", encoding="utf-8") as f:
                 jd_raw = f.read()
             parsed_jd = parse_job_description(jd_raw)
-            jds.append({"filename": file.name, "data": parsed_jd})
+            jds.append({"filename": filename, "data": parsed_jd})
 
-        # Matching
         for resume in resumes:
             for jd in jds:
                 result = match_parsed_resume_to_job(resume["data"], jd["data"])
                 score = result.get("gpt_score", "N/A")
                 explanation = result.get("gpt_explanation", "No explanation provided.")
-
                 matches.append({
                     "resume": resume["filename"],
                     "job": jd["filename"],
                     "score": score,
                     "explanation": explanation,
-                    "email": FIXED_EMAIL
+                    "email": resume["email"]
                 })
 
-    # Display results and send emails
     for match in matches:
-        st.subheader(f"Resume: {match['resume']} → JD: {match['job']}")
-        st.write(f"**Score**: {match['score']}")
-        st.write(f"**Explanation (Internal View)**: {match['explanation']}")
+        print(f"\n--- Match: {match['resume']} → {match['job']} ---")
+        print(f"Score: {match['score']}")
+        print(f"Explanation: {match['explanation']}")
 
-        if isinstance(match["score"], (int, float)):
+        if isinstance(match["score"], (int, float)) and match["email"]:
             if match["score"] >= THRESHOLD:
-                if st.button(f"Send Shortlist Email to {match['email']}", key=f"shortlist-{match['resume']}-{match['job']}"):
+                send = input(f"Send SHORTLIST email to {match['email']}? (y/n): ").strip().lower()
+                if send == 'y':
                     subject = f"Congratulations! You've been shortlisted for the position: {match['job']}"
                     body = f"""Dear Candidate,
 
@@ -79,10 +83,11 @@ Our team will reach out to you soon regarding the next steps in the process.
 
 Best regards,  
 Hiring Team"""
-                    send_email(match["email"], subject, body)
-                    st.success(f"Shortlist email sent to {match['email']}!")
+                    send_email(from_email, match["email"], subject, body)
+                    print(f"✅ Shortlist email sent to {match['email']}")
             else:
-                if st.button(f"Send Rejection Email to {match['email']}", key=f"reject-{match['resume']}-{match['job']}"):
+                send = input(f"Send REJECTION email to {match['email']}? (y/n): ").strip().lower()
+                if send == 'y':
                     subject = f"Update on Your Application for: {match['job']}"
                     body = f"""Dear Candidate,
 
@@ -94,5 +99,10 @@ We wish you the very best in your future endeavors and encourage you to apply ag
 
 Sincerely,  
 Hiring Team"""
-                    send_email(match["email"], subject, body)
-                    st.success(f"Rejection email sent to {match['email']}!")
+                    send_email(from_email, match["email"], subject, body)
+                    print(f"❌ Rejection email sent to {match['email']}")
+        elif not match["email"]:
+            print(f"⚠️ No email found in parsed resume: {match['resume']}")
+
+if __name__ == "__main__":
+    main()
