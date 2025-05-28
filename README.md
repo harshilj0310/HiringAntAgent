@@ -25,28 +25,19 @@ source venv/bin/activate  &lt;!-- Windows: venv\Scripts\activate --&gt;
       <pre><code>EMAIL_PASSWORD=your_email_password</code></pre>
     </li>
     <li>Run the app:
-      <pre><code>flask run</code></pre>
+      <pre><code>python3 run.py</code></pre>
     </li>
   </ol>
 
   <h2>API Endpoints</h2>
 
   <h3>POST /match</h3>
-  <p>Upload resumes and job descriptions, with optional from_email.</p>
+  <p>Upload resumes and job descriptions path, with from_email (senders mail id).</p>
   <p><strong>Form Data:</strong> <code>resumes</code> (files), <code>jds</code> (files), <code>from_email</code> (string)</p>
-  <p>Returns JSON list of match results with scores and explanations.</p>
+  <p>Returns JSON list of match results with scores and explanations. <br>Also send the offer mail if score is >70 and rejection is less score is less the 70</p>
   <p><strong>Example curl:</strong></p>
   <pre><code>curl -X POST http://127.0.0.1:5000/match \
   -F "resumes=@resume.pdf" -F "jds=@job.txt" -F "from_email=you@example.com"</code></pre>
-
-  <h3>POST /send_email_permission</h3>
-  <p>Sends emails based on match results and threshold if permission granted.</p>
-  <p><strong>JSON Body:</strong> <code>{ "matches": [...], "from_email": "...", "send_email": true/false }</code></p>
-  <p>Returns status of email sending.</p>
-  <p><strong>Example curl:</strong></p>
-  <pre><code>curl -X POST http://127.0.0.1:5000/send_email_permission \
-  -H "Content-Type: application/json" \
-  -d '{"matches": [...], "from_email": "you@example.com", "send_email": true}'</code></pre>
 
   <h2>Config & Logs</h2>
   <p>Settings stored in <code>config.yaml</code>. Logs saved in <code>logs/app.log</code>.</p>
