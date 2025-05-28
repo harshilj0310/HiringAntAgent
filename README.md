@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Resume-JD Matching API</title>
 </head>
 <body>
   <h1>Resume-JD Matching API</h1>
@@ -53,7 +52,7 @@ source venv/bin/activate  &lt;!-- Windows: venv\Scripts\activate --&gt;
 
   <p><strong>Example curl:</strong></p>
   <pre><code>curl -X POST http://127.0.0.1:5000/match \
-  -F "resumes=@resume.pdf" -F "jds=@job.txt" -F "from_email=you@example.com"</code></pre>
+  -F "resumes=@resume.pdf" -F "jds=@job.txt"</code></pre>
 
   <h3>2. POST /send-mails</h3>
   <p>This endpoint sends emails based on match results (e.g., from the <code>/match</code> endpoint). Emails are sent only if <code>proceed: true</code> is included.</p>
