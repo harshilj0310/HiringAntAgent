@@ -1,0 +1,20 @@
+[2025-05-28 10:13:10] INFO [__main__:38] this is the entered path resume :/home/shivam/Intern_Work/HiringAntAgent/Resume, jd :/home/shivam/Intern_Work/HiringAntAgent/Job Description
+[2025-05-28 10:13:10] INFO [__main__:40] Starting resume-job matching pipeline.
+[2025-05-28 10:13:10] INFO [__main__:27] Loaded 1 files from /home/shivam/Intern_Work/HiringAntAgent/Resume with extensions ['.pdf']
+[2025-05-28 10:13:10] INFO [__main__:27] Loaded 1 files from /home/shivam/Intern_Work/HiringAntAgent/Job Description with extensions ['.txt', '.json']
+[2025-05-28 10:13:10] INFO [root:75] ✅ Extracted text from PDF: /tmp/tmp3eun5jbf/document (3) (1).pdf
+[2025-05-28 10:13:55] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-05-28 10:13:55] INFO [root:92] ✅ Successfully parsed resume: /tmp/tmp3eun5jbf/document (3) (1).pdf
+[2025-05-28 10:13:55] INFO [__main__:60] Parsed resume: document (3) (1).pdf
+[2025-05-28 10:13:55] INFO [root:89] 📄 Received raw JD text input.
+[2025-05-28 10:14:01] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-05-28 10:14:01] INFO [root:96] ✅ Successfully parsed JD JSON.
+[2025-05-28 10:14:01] INFO [__main__:74] Parsed JD: Data_Scientist.txt
+[2025-05-28 10:14:01] INFO [root:59] 📩 Invoking LLM with resume and job description JSON.
+[2025-05-28 10:14:05] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-05-28 10:14:05] INFO [root:68] ✅ Successfully parsed LLM response.
+[2025-05-28 10:14:05] INFO [__main__:93] Matched document (3) (1).pdf with Data_Scientist.txt, score: 85
+[2025-05-28 10:14:11] INFO [root:40] Connecting to SMTP server smtp.gmail.com:587
+[2025-05-28 10:14:16] INFO [root:45] Email sent successfully to preetj0310@gmail.com
+[2025-05-28 10:14:17] INFO [root:56] SMTP server connection closed.
+[2025-05-28 10:14:17] INFO [__main__:118] Shortlist email sent to preetj0310@gmail.com

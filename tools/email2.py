@@ -3,44 +3,56 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from dotenv import load_dotenv
 import os
+import logging
 
+# Load environment variables
 load_dotenv()
+
+# Configure logging
+logging.basicConfig(
+
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[
+        logging.FileHandler("logs/app.log", encoding="utf-8"),
+        logging.StreamHandler()
+    ]
+)
 
 def send_email(from_email, to_email, subject, body):
     from_password = os.getenv("EMAIL_PASSWORD")
 
+    if not from_password:
+        logging.error("EMAIL_PASSWORD not found in environment variables.")
+        return
+
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
 
-    # Create message
     msg = MIMEMultipart()
     msg["From"] = from_email
     msg["To"] = to_email
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
 
+    server = None
     try:
+        logging.info(f"Connecting to SMTP server {smtp_server}:{smtp_port}")
         server = smtplib.SMTP(smtp_server, smtp_port)
         server.starttls()
         server.login(from_email, from_password)
         server.send_message(msg)
-        server.quit()
-        print(f"\n✅ Email sent successfully to {to_email}.")
+        logging.info(f"Email sent successfully to {to_email}")
+    except smtplib.SMTPAuthenticationError:
+        logging.exception("Authentication failed: Check email credentials.")
+    except smtplib.SMTPException as smtp_err:
+        logging.exception(f"SMTP error occurred: {smtp_err}")
     except Exception as e:
-        print(f"\n❌ Failed to send email: {e}")
-
-if __name__ == "__main__":
-    from_email = input("Enter your email address: ").strip()
-    to_email = input("Enter recipient's email address: ").strip()
-
-    # Set these dynamically based on your condition
-    is_selected = True  # Change this as per your logic
-
-    if is_selected:
-        subject = "Congratulations! You have been selected"
-        body = "We are pleased to inform you that you have been selected for the role."
-    else:
-        subject = "Application Update"
-        body = "Thank you for applying. Unfortunately, you have not been selected at this time."
-
-    send_email(from_email, to_email, subject, body)
+        logging.exception(f"Unexpected error occurred while sending email: {e}")
+    finally:
+        if server:
+            try:
+                server.quit()
+                logging.info("SMTP server connection closed.")
+            except Exception as e:
+                logging.warning(f"Failed to close SMTP server connection: {e}")
