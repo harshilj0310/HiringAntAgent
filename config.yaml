@@ -1,0 +1,50 @@
+resume_directory: "/home/shivam/Intern_Work/HiringAntAgent/Resume"
+jd_directory: "/home/shivam/Intern_Work/HiringAntAgent/Job Description"
+threshold: 70
+
+logging:
+  log_file: "logs/app.log"
+  level: "INFO"
+
+email_templates:
+  shortlist:
+    subject: "Congratulations! You've been shortlisted for the position: {job}"
+    body: |
+      Dear Candidate,
+
+      We are pleased to inform you that you have been shortlisted for the role "{job}" based on your application.
+
+      Our team will reach out to you soon regarding the next steps in the process.
+
+      Best regards,  
+      Hiring Team
+  rejection:
+    subject: "Update on Your Application for: {job}"
+    body: |
+      Dear Candidate,
+
+      Thank you for applying to the position "{job}". We appreciate the time and effort you put into your application.
+
+      After careful consideration, we regret to inform you that you have not been shortlisted for this role.
+
+      We wish you the very best in your future endeavors and encourage you to apply again for suitable opportunities with us.
+
+      Sincerely,  
+      Hiring Team
+
+prompts:
+  resume_parsing: |
+    Extract the following information from the resume text below:
+    - Name
+    - Contact Information (email, phone, LinkedIn, etc.)
+    - Skills (technical and soft skills)
+    - Experience (job title, company, duration, responsibilities)
+    - Education (degree, institution, graduation date)
+    - Certifications
+    - Projects (title, description, technologies used)
+    - Languages (spoken or programming languages)
+
+    Return the output in JSON format.
+
+    Resume Text:
+    {resume_text}

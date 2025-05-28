@@ -13,7 +13,6 @@ log_file = os.path.join(os.path.dirname(__file__), "..", "logs", "jd_parser.log"
 os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
 logging.basicConfig(
-    filename='/home/shivam/Intern_Work/HiringAntAgent/scripts/logs/app.log',
     filemode="a",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"

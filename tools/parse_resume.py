@@ -1,6 +1,6 @@
 import json
 import os
-import logging
+import logging,yaml
 from langchain.tools import Tool
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
@@ -20,7 +20,6 @@ log_file = os.path.join(os.path.dirname(__file__), "..", "logs", "resume_parser.
 os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
 logging.basicConfig(
-    filename='/home/shivam/Intern_Work/HiringAntAgent/scripts/logs/app.log',
     filemode="a",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s"
@@ -29,24 +28,17 @@ logging.basicConfig(
 # ============================================
 # ✅ Define the resume parsing prompt
 # ============================================
+# Load YAML config once at the module level
+CONFIG_PATH = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
+
+with open(CONFIG_PATH, 'r') as f:
+    config = yaml.safe_load(f)
+
+resume_prompt_template = config.get("prompts", {}).get("resume_parsing", "")
+
 resume_parsing_prompt = PromptTemplate(
     input_variables=["resume_text"],
-    template="""
-    Extract the following information from the resume text below:
-    - Name
-    - Contact Information (email, phone, LinkedIn, etc.)
-    - Skills (technical and soft skills)
-    - Experience (job title, company, duration, responsibilities)
-    - Education (degree, institution, graduation date)
-    - Certifications
-    - Projects (title, description, technologies used)
-    - Languages (spoken or programming languages)
-
-    Return the output in JSON format.
-
-    Resume Text:
-    {resume_text}
-    """
+    template=resume_prompt_template
 )
 
 # ============================================
@@ -97,24 +89,3 @@ def parse_resume(resume_path):
     except Exception as e:
         logging.exception(f"❌ Exception during resume parsing: {e}")
         return {"error": str(e)}
-
-# ============================================
-# ✅ Define LangChain tool
-# ============================================
-resume_parsing_tool = Tool(
-    name="Resume Parser",
-    func=lambda: parse_resume("C:/Users/hp/Downloads/document.pdf"),  # Update path as needed
-    description="Extracts structured information from a given resume."
-)
-
-# ============================================
-# ✅ Run the tool
-# ============================================
-if __name__ == "__main__":
-    try:
-        resume_path = "C:/Users/hp/hiring-agent/HiringAntAgent/Resume/document (3) (1).pdf"  # Update this
-        result = parse_resume(resume_path)
-        print(json.dumps(result, indent=2, ensure_ascii=False))
-    except Exception as e:
-        logging.exception("❌ Failed to run resume parser script")
-        print(f"Error: {e}")

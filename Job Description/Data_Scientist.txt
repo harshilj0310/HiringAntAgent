@@ -1,6 +1,0 @@
-"""
-    We are hiring a Data Scientist with 3+ years of experience in Python, NLP, and Machine Learning.
-    Responsibilities include building predictive models and analyzing large datasets.
-    Preferred skills: Experience with cloud platforms like AWS, Azure, or GCP.
-    Location: Mumbai, India.
-    """

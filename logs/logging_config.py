@@ -21,7 +21,7 @@ def setup_logging(
         "handlers": {
             "file": {
                 "class": "logging.FileHandler",
-                "filename": '/home/shivam/Intern_Work/HiringAntAgent/scripts/logs/app.log',
+                "filename": log_file,
                 "formatter": "default",
                 "level": log_level,
             },
