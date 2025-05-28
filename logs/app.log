@@ -97,3 +97,33 @@
 [2025-05-28 12:10:02] INFO [root:45] Email sent successfully to preetj0310@gmail.com
 [2025-05-28 12:10:02] INFO [root:56] SMTP server connection closed.
 [2025-05-28 12:10:02] INFO [werkzeug:97] 127.0.0.1 - - [28/May/2025 12:10:02] "POST /match HTTP/1.1" 200 -
+[2025-05-28 13:35:07] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-05-28 13:35:07] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-05-28 13:35:07] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-28 13:35:08] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-28 13:35:08] INFO [werkzeug:97]  * Debugger PIN: 508-411-490
+[2025-05-28 13:38:54] INFO [root:67] ✅ Extracted text from PDF: /tmp/tmpntwz8cgk/document (3) (1).pdf
+[2025-05-28 13:39:24] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 500 Internal Server Error"
+[2025-05-28 13:39:24] INFO [openai._base_client:1092] Retrying request to /chat/completions in 0.471620 seconds
+[2025-05-28 13:40:18] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-05-28 13:40:18] INFO [root:84] ✅ Successfully parsed resume: /tmp/tmpntwz8cgk/document (3) (1).pdf
+[2025-05-28 13:40:18] INFO [root:88] 📄 Received raw JD text input.
+[2025-05-28 13:40:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-05-28 13:40:23] INFO [root:95] ✅ Successfully parsed JD JSON.
+[2025-05-28 13:40:23] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-05-28 13:40:28] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-05-28 13:40:28] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-05-28 13:40:28] INFO [werkzeug:97] 127.0.0.1 - - [28/May/2025 13:40:28] "POST /match HTTP/1.1" 200 -
+[2025-05-28 13:58:52] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-28 13:58:52] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-28 13:58:53] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-28 13:58:53] INFO [werkzeug:97]  * Debugger PIN: 508-411-490
+[2025-05-28 14:07:57] INFO [app.routes:53] so here we have matches as [{'email': 'preetj0310@gmail.com', 'explanation': "The candidate has strong Python skills and experience with Machine Learning and NLP, which are required for the job. However, there is no mention of experience with cloud platforms like AWS, Azure, or GCP, which are preferred skills for the job. The candidate's experience duration is not clearly mentioned, but they have relevant experience in data science roles.", 'job': 'Data_Scientist.txt', 'resume': 'document (3) (1).pdf', 'score': 85}],email as shivamkumar878758@gmail.com and process equal True
+[2025-05-28 14:07:57] INFO [app.routes:57] matches are present
+[2025-05-28 14:07:57] INFO [app.routes:61] process is True so mail should be sent
+[2025-05-28 14:07:57] INFO [app.routes:67] logging inside the loop with match : {match}
+[2025-05-28 14:07:57] INFO [root:40] Connecting to SMTP server smtp.gmail.com:587
+[2025-05-28 14:08:03] INFO [root:45] Email sent successfully to preetj0310@gmail.com
+[2025-05-28 14:08:03] INFO [root:56] SMTP server connection closed.
+[2025-05-28 14:08:03] INFO [werkzeug:97] 127.0.0.1 - - [28/May/2025 14:08:03] "POST /send-mails HTTP/1.1" 200 -

@@ -6,8 +6,9 @@
 </head>
 <body>
   <h1>Resume-JD Matching API</h1>
+
   <h2>Overview</h2>
-  <p>API to parse resumes and job descriptions, match them by skills and experience, and optionally send email notifications.</p>
+  <p>API to parse resumes and job descriptions, match them by skills and experience, and optionally send email notifications based on a configurable threshold.</p>
 
   <h2>Setup</h2>
   <ol>
@@ -31,21 +32,71 @@ source venv/bin/activate  &lt;!-- Windows: venv\Scripts\activate --&gt;
 
   <h2>API Endpoints</h2>
 
-  <h3>POST /match</h3>
-  <p>Upload resumes and job descriptions path, with from_email (senders mail id).</p>
-  <p><strong>Form Data:</strong> <code>resumes</code> (files), <code>jds</code> (files), <code>from_email</code> (string)</p>
-  <p>Returns JSON list of match results with scores and explanations. <br>Also send the offer mail if score is >70 and rejection is less score is less the 70</p>
+  <h3>1. POST /match</h3>
+  <p>Match resumes against job descriptions and calculate a similarity score. This API does <strong>not send emails</strong> by itself but can optionally trigger email sending if configured.</p>
+
+  <p><strong>Form Data:</strong></p>
+  <ul>
+    <li><code>resumes</code>: One or more resume files (PDF)</li>
+    <li><code>jds</code>: One or more job description files (TXT)</li>
+    <li><code>from_email</code>: Sender’s email address</li>
+  </ul>
+
+  <p><strong>Returns:</strong> JSON list of match results including:</p>
+  <ul>
+    <li><code>email</code>: Candidate’s email</li>
+    <li><code>score</code>: Matching percentage</li>
+    <li><code>job</code>: Job file name</li>
+    <li><code>resume</code>: Resume file name</li>
+    <li><code>explanation</code>: Explanation of match</li>
+  </ul>
+
   <p><strong>Example curl:</strong></p>
   <pre><code>curl -X POST http://127.0.0.1:5000/match \
   -F "resumes=@resume.pdf" -F "jds=@job.txt" -F "from_email=you@example.com"</code></pre>
 
+  <h3>2. POST /send-mails</h3>
+  <p>This endpoint sends emails based on match results (e.g., from the <code>/match</code> endpoint). Emails are sent only if <code>proceed: true</code> is included.</p>
+
+  <p><strong>Request JSON:</strong></p>
+  <ul>
+    <li><code>matches</code>: List of match result objects (with keys: email, job, resume, score, explanation)</li>
+    <li><code>from_email</code>: Sender’s email address</li>
+    <li><code>proceed</code>: Boolean to confirm sending emails</li>
+  </ul>
+
+  <p><strong>Logic:</strong></p>
+  <ul>
+    <li>If <code>score >= threshold</code>: Sends <strong>shortlisting email</strong></li>
+    <li>If <code>score &lt; threshold</code>: Sends <strong>rejection email</strong></li>
+  </ul>
+
+  <p><strong>Example curl:</strong></p>
+  <pre><code>curl -X POST http://127.0.0.1:5000/send-mails \
+  -H "Content-Type: application/json" \
+  -d '{
+    "matches": [
+      {
+        "email": "candidate@example.com",
+        "explanation": "Good Python and ML experience",
+        "job": "Data_Scientist.txt",
+        "resume": "resume.pdf",
+        "score": 85
+      }
+    ],
+    "from_email": "you@example.com",
+    "proceed": true
+  }'</code></pre>
+
   <h2>Config & Logs</h2>
-  <p>Settings stored in <code>config.yaml</code>. Logs saved in <code>logs/app.log</code>.</p>
+  <p>Settings like score threshold and email templates are stored in <code>config.yaml</code>.</p>
+  <p>Application logs are saved to <code>logs/app.log</code>.</p>
 
   <h2>Notes</h2>
   <ul>
-    <li>Uses Gmail SMTP server by default.</li>
-    <li>For production, use a production-grade WSGI server instead of Flask dev server.</li>
+    <li>Uses Gmail SMTP server by default (smtp.gmail.com:587)</li>
+    <li>Emails are only sent if <code>EMAIL_PASSWORD</code> is set in the <code>.env</code> file</li>
+    <li>For production, use a production-grade WSGI server instead of Flask’s built-in dev server</li>
   </ul>
 </body>
 </html>

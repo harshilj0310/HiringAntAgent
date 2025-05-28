@@ -14,7 +14,7 @@ THRESHOLD = CONFIG["threshold"]
 
 logger = logging.getLogger(__name__)
 
-def process_matching(resume_paths, jd_paths, from_email):
+def process_matching(resume_paths, jd_paths):
     resumes = []
     for path in resume_paths:
         parsed = parse_resume(path)
@@ -50,19 +50,5 @@ def process_matching(resume_paths, jd_paths, from_email):
             }
 
             results.append(match_info)
-
-            # Only send emails if both from_email and candidate email are available
-            if from_email and resume["email"]:
-                job_title = jd["filename"]
-
-                if score >= THRESHOLD:
-                    subject = CONFIG["email_templates"]["shortlist"]["subject"].format(job=job_title)
-                    body = CONFIG["email_templates"]["shortlist"]["body"].format(job=job_title)
-                    send_email(from_email, resume["email"], subject, body)
-
-                else:
-                    subject = CONFIG["email_templates"]["rejection"]["subject"].format(job=job_title)
-                    body = CONFIG["email_templates"]["rejection"]["body"].format(job=job_title)
-                    send_email(from_email, resume["email"], subject, body)
 
     return results
