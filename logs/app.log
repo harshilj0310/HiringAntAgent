@@ -127,3 +127,49 @@
 [2025-05-28 14:08:03] INFO [root:45] Email sent successfully to preetj0310@gmail.com
 [2025-05-28 14:08:03] INFO [root:56] SMTP server connection closed.
 [2025-05-28 14:08:03] INFO [werkzeug:97] 127.0.0.1 - - [28/May/2025 14:08:03] "POST /send-mails HTTP/1.1" 200 -
+[2025-05-30 09:49:24] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-05-30 09:49:24] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-05-30 09:49:24] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 09:49:25] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 09:49:25] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 09:51:11] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 09:51:11] "[31m[1mPOST /upload-resume HTTP/1.1[0m" 400 -
+[2025-05-30 09:54:22] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 09:54:22] "[31m[1mPOST /upload-resume HTTP/1.1[0m" 400 -
+[2025-05-30 09:55:18] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 09:55:18] "[35m[1mPOST /upload-resume HTTP/1.1[0m" 500 -
+[2025-05-30 09:59:18] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 09:59:18] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 09:59:20] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 09:59:20] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 09:59:24] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 09:59:24] "[35m[1mPOST /upload-resume HTTP/1.1[0m" 201 -
+[2025-05-30 10:09:02] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:09:03] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:09:05] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:09:05] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:09:13] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:09:14] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:09:15] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:09:15] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:10:15] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:10:16] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:10:18] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:10:18] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:11:57] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:11:57] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:11:59] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:11:59] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:12:34] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 10:12:34] "[31m[1mPOST /upload-jd HTTP/1.1[0m" 400 -
+[2025-05-30 10:13:20] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 10:13:20] "[31m[1mPOST /upload-jd HTTP/1.1[0m" 400 -
+[2025-05-30 10:13:43] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:13:43] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:13:45] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:13:45] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:13:57] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 10:13:57] "[31m[1mPOST /upload-jd HTTP/1.1[0m" 400 -
+[2025-05-30 10:14:18] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:14:19] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:14:20] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:14:20] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:14:25] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes.py', reloading
+[2025-05-30 10:14:26] INFO [werkzeug:97]  * Restarting with stat
+[2025-05-30 10:14:28] WARNING [werkzeug:97]  * Debugger is active!
+[2025-05-30 10:14:28] INFO [werkzeug:97]  * Debugger PIN: 233-648-482
+[2025-05-30 10:14:35] INFO [werkzeug:97] 127.0.0.1 - - [30/May/2025 10:14:35] "[35m[1mPOST /upload-jd HTTP/1.1[0m" 201 -

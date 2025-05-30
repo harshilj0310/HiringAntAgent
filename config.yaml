@@ -1,5 +1,10 @@
 resume_directory: "/home/shivam/Intern_Work/HiringAntAgent/Resume"
 jd_directory: "/home/shivam/Intern_Work/HiringAntAgent/Job Description"
+resume_upload_folder: "app/uploads/resume"
+jd_upload_folder: "app/uploads/jd"
+allowed_extensions_resume: ["pdf", "doc", "docx"]
+allowed_extensions_JD: ["txt"]
+max_file_size_mb: 10
 threshold: 70
 
 logging:
