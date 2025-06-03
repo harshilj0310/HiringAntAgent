@@ -43,3 +43,153 @@
 [2025-06-03 19:24:39] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
 [2025-06-03 19:24:43] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 [2025-06-03 19:24:43] INFO [root:67] ✅ Successfully parsed LLM response.
+
+
+[2025-06-03 20:11:35] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-03 20:11:35] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-03 20:11:35] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 20:11:36] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 20:11:36] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 20:11:36] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 20:12:48] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:12:48] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 20:12:48] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 20:12:56] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:12:56] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 20:12:56] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 20:13:01] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:13:01] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 20:13:02] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 20:13:29] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:13:29] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 20:13:29] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 20:13:39] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:13:39] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 20:13:39] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 20:13:43] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:13:43] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 20:43:24] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-03 20:43:24] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-03 20:43:24] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 20:43:25] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 20:43:25] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 20:43:26] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 20:44:10] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:44:10] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 20:44:10] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 20:44:20] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:44:20] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 20:44:20] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 20:44:25] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:44:25] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 20:44:25] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 20:44:52] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:44:52] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 20:44:52] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 20:45:00] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:45:00] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 20:45:00] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 20:45:03] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 20:45:03] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:17:09] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-03 21:17:09] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-03 21:17:09] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 21:17:10] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 21:17:10] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 21:17:10] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:17:15] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:17:15] "GET / HTTP/1.1" 200 -
+[2025-06-03 21:18:34] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:18:34] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 21:18:34] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 21:18:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:18:40] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 21:18:40] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 21:18:44] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:18:44] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:18:44] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:18:53] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:18:53] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:19:14] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:19:14] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 21:19:14] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 21:19:18] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:19:18] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:19:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:19:23] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 21:19:23] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 21:19:28] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:19:28] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:19:40] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:19:40] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:21:29] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes/email_route.py', reloading
+[2025-06-03 21:21:30] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 21:21:31] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 21:21:31] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 21:21:31] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:21:40] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:21:40] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:22:19] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:22:19] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 21:22:19] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 21:22:26] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:22:26] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 21:22:26] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 21:22:32] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:22:32] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:22:32] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:23:13] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:23:13] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 21:23:13] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 21:23:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:23:23] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 21:23:23] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 21:23:27] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:23:27] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:26:40] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-03 21:26:40] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-03 21:26:40] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 21:26:41] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 21:26:41] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 21:26:41] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:26:54] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes/email_route.py', reloading
+[2025-06-03 21:26:55] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 21:26:57] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 21:26:57] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 21:26:57] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:27:43] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-03 21:27:43] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-03 21:27:43] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 21:27:44] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 21:27:44] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 21:27:44] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:29:00] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:29:00] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 21:29:00] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 21:29:07] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:29:07] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 21:29:07] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 21:29:12] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:29:12] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:29:12] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 21:29:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:29:40] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 21:29:40] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 21:29:47] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:29:47] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 21:29:47] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 21:29:51] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 21:29:51] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 21:30:00] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:30:00] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:31:18] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:31:18] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:33:26] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-03 21:33:31] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-03 21:33:32] INFO [root:52] SMTP server connection closed.
+[2025-06-03 21:33:32] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:33:32] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:33:54] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:33:54] "GET / HTTP/1.1" 200 -
+[2025-06-03 21:34:25] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 21:34:25] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-03 21:36:13] INFO [werkzeug:97]  * Detected change in '/home/shivam/Intern_Work/HiringAntAgent/app/routes/email_route.py', reloading
+[2025-06-03 21:36:13] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 21:36:15] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 21:36:15] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 21:36:15] INFO [root:16] ✅ Extracted text from PDF bytes

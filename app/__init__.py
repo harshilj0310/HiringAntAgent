@@ -18,7 +18,7 @@ def create_app():
     app.register_blueprint(jd_bp)
     app.register_blueprint(email_bp)
 
-    if os.environ.get("FLASK_RUN_FROM_CLI") != "true":
+    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         start_background_matcher()
 
     return app
