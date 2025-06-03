@@ -39,13 +39,13 @@ email_templates:
 
 prompts:
   resume_parsing: |
-    Extract the following information from the resume text below:
-    - Name
-    - Contact Information (email, phone, LinkedIn, etc.)
+    Look for the following information from the resume text and extract them if they are present. contact information should pe provided as a dict object with keys like Email,Phone,LinkedIn:
+    - Name of the Candidate
+    - Contact Information (Email, Phone, LinkedIn, etc.)
     - Skills (technical and soft skills)
     - Experience (job title, company, duration, responsibilities)
-    - Education (degree, institution, graduation date)
-    - Certifications
+    - Education (degree, institution, graduation date, CGPA)
+    - Certifications and relevant course completed
     - Projects (title, description, technologies used)
     - Languages (spoken or programming languages)
 

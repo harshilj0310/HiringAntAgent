@@ -6,7 +6,18 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from PyPDF2 import PdfReader
 from dotenv import load_dotenv
+from io import BytesIO
 
+def extract_text_from_pdf_bytes(pdf_bytes):
+    try:
+        pdf_stream = BytesIO(pdf_bytes)
+        reader = PdfReader(pdf_stream)
+        text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+        logging.info(f"✅ Extracted text from PDF bytes")
+        return text
+    except Exception as e:
+        logging.error(f"❌ Error reading PDF bytes: {e}")
+        raise e
 # ============================================
 # ✅ Load environment variables from .env
 # ============================================
@@ -29,7 +40,7 @@ logging.basicConfig(
 # ✅ Define the resume parsing prompt
 # ============================================
 # Load YAML config once at the module level
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), '..', 'config.yaml')
+CONFIG_PATH = 'app/config.yaml'
 
 with open(CONFIG_PATH, 'r') as f:
     config = yaml.safe_load(f)
@@ -76,13 +87,23 @@ def extract_text_from_pdf(pdf_path):
 # ============================================
 # ✅ Function to parse resume
 # ============================================
-def parse_resume(resume_path):
+def parse_resume(input_data):
+    """
+    input_data: str (file path) OR bytes (PDF content)
+    """
     try:
-        resume_text = extract_text_from_pdf(resume_path)
+        if isinstance(input_data, bytes):
+            resume_text = extract_text_from_pdf_bytes(input_data)
+        elif isinstance(input_data, str):
+            resume_text = extract_text_from_pdf(input_data)
+        else:
+            raise TypeError("parse_resume input must be file path string or bytes")
+
         response = parsing_chain.invoke({"resume_text": resume_text})
         parsed = json.loads(response.content.strip())
-        logging.info(f"✅ Successfully parsed resume: {resume_path}")
+        logging.info(f"✅ Successfully parsed resume")
         return parsed
+
     except json.JSONDecodeError as je:
         logging.error(f"❌ JSON parsing failed: {je}")
         return {"error": "Invalid JSON returned from model."}

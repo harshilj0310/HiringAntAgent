@@ -1,0 +1,45 @@
+[2025-06-03 19:22:36] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-03 19:22:36] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-03 19:22:36] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-03 19:22:36] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 19:22:37] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-03 19:22:37] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
+[2025-06-03 19:22:37] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 19:22:41] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 19:22:41] "GET / HTTP/1.1" 200 -
+[2025-06-03 19:22:49] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 19:22:49] "GET /provider HTTP/1.1" 200 -
+[2025-06-03 19:23:00] INFO [werkzeug:97] 127.0.0.1 - - [03/Jun/2025 19:23:00] "GET /student HTTP/1.1" 200 -
+[2025-06-03 19:23:28] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:23:28] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 19:23:28] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 19:23:30] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:23:30] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 19:23:30] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 19:23:35] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:23:35] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 19:23:35] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 19:23:38] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:23:38] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 19:23:38] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 19:23:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:23:40] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 19:23:40] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 19:23:43] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:23:43] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 19:23:43] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-03 19:24:13] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:24:13] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 19:24:13] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 19:24:22] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:24:22] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 19:24:22] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 19:24:25] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:24:25] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-03 19:24:31] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:24:31] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-03 19:24:31] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-03 19:24:39] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:24:39] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-03 19:24:39] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-03 19:24:43] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-03 19:24:43] INFO [root:67] ✅ Successfully parsed LLM response.

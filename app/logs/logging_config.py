@@ -3,7 +3,7 @@ import logging.config
 from pathlib import Path
 
 def setup_logging(
-    log_file: str = "logs/app.log",
+    log_file: str = "app/logs/app.log",
     log_level: int = logging.INFO,
     console_level: int = logging.INFO
 ):

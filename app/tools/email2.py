@@ -12,11 +12,7 @@ load_dotenv()
 logging.basicConfig(
 
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler("logs/app.log", encoding="utf-8"),
-        logging.StreamHandler()
-    ]
+    format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
 def send_email(from_email, to_email, subject, body):

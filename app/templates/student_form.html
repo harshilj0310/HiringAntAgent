@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Resume</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --background: #f3f4f6;
+      --card-bg: #ffffff;
+      --border: #e5e7eb;
+      --text: #111827;
+      --label: #6b7280;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--label);
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      outline: none;
+    }
+
+    input[type="file"] {
+      padding: 8px;
+      background-color: #f9fafb;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--primary-hover);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Upload Your Resume</h2>
+    <form action="/upload-resume" method="POST" enctype="multipart/form-data">
+
+      <label for="job_description_title">Job Title</label>
+      <input type="text" id="job_description_title" name="job_description_title" required>
+
+      <label for="resume">Resume (PDF)</label>
+      <input type="file" id="resume" name="resume" accept=".pdf" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10,15}" placeholder="e.g. 9876543210" required>
+
+      <label for="experience">Experience</label>
+      <input type="text" id="experience" name="experience" placeholder="e.g. 2 years" required>
+
+      <label for="graduation">Graduation</label>
+      <input type="text" id="graduation" name="graduation" placeholder="e.g. B.Tech in CSE" required>
+
+      <label for="college_name">College Name</label>
+      <input type="text" id="college_name" name="college_name" required>
+
+      <label for="preferred_location">Preferred Location</label>
+      <input type="text" id="preferred_location" name="preferred_location" placeholder="e.g. Bangalore" required>
+
+      <button type="submit">Submit Resume</button>
+    </form>
+  </div>
+
+</body>
+</html>

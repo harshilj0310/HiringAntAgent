@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Job Description</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 50px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #007BFF;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Upload Job Description</h2>
+    <form id="jdForm" enctype="multipart/form-data">
+      <label for="jobTitle">Job Title:</label>
+      <input type="text" id="jobTitle" name="job_title" required>
+
+      <label for="jdFile">Job Description (.txt only):</label>
+      <input type="file" id="jdFile" name="jd" accept=".txt" required>
+
+      <button type="submit">Upload</button>
+    </form>
+    <div class="message" id="responseMessage"></div>
+  </div>
+
+  <script>
+    document.getElementById('jdForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData();
+      const jobTitle = document.getElementById('jobTitle').value;
+      const jdFile = document.getElementById('jdFile').files[0];
+
+      if (!jdFile || !jobTitle) {
+        document.getElementById('responseMessage').innerHTML = '<span class="error">All fields are required.</span>';
+        return;
+      }
+
+      formData.append('jd', jdFile);
+      formData.append('job_title', jobTitle);  // Optional, if your backend expects it
+
+      try {
+        const response = await fetch('/upload-jd', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          document.getElementById('responseMessage').innerText = 'JD uploaded successfully!';
+        } else {
+          document.getElementById('responseMessage').innerHTML = `<span class="error">${result.error || 'Upload failed'}</span>`;
+        }
+      } catch (error) {
+        document.getElementById('responseMessage').innerHTML = '<span class="error">Server error. Try again later.</span>';
+      }
+    });
+  </script>
+</body>
+</html>
