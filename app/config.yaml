@@ -37,6 +37,21 @@ email_templates:
       Sincerely,  
       Hiring Team
 
+  interview:
+    subject: "Interview Scheduled for the Position: {job}"
+    body: |
+      Dear Candidate,
+
+      Your interview for the position "{job}" has been scheduled.
+
+      🗓️ Date: {date}  
+      🕒 Time: {time}
+
+      Please be available 5 minutes before the scheduled time. Further instructions will be shared shortly.
+
+      Best regards,  
+      Hiring Team
+
 prompts:
   resume_parsing: |
     Look for the following information from the resume text and extract them if they are present. contact information should pe provided as a dict object with keys like Email,Phone,LinkedIn:

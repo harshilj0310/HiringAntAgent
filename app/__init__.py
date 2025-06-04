@@ -3,6 +3,7 @@ from app.routes.frontend_route import frontend_bp
 from app.routes.upload_resume import resume_bp
 from app.routes.upload_jd import jd_bp
 from app.routes.email_route import email_bp
+from app.routes.schedule_interviews import interview_bp
 from app.logs.logging_config import setup_logging
 from dotenv import load_dotenv
 from app.matcher import start_background_matcher
@@ -17,6 +18,7 @@ def create_app():
     app.register_blueprint(resume_bp)
     app.register_blueprint(jd_bp)
     app.register_blueprint(email_bp)
+    app.register_blueprint(interview_bp)
 
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         start_background_matcher()

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule Interviews</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --accent-color: #f4f9ff;
+      --hover-color: #0056b3;
+      --text-color: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--accent-color);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+      color: var(--text-color);
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f0f8ff;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="date"],
+    input[type="time"] {
+      padding: 8px;
+      width: 100%;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--hover-color);
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 13px;
+      }
+
+      input[type="date"],
+      input[type="time"],
+      input[type="email"] {
+        font-size: 12px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📅 Schedule Interviews for Shortlisted Candidates</h2>
+    <form method="POST">
+      <label for="from_email">📧 Your Email (From):</label>
+      <input type="email" name="from_email" id="from_email" placeholder="your@email.com" required>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Resume</th>
+            <th>Email</th>
+            <th>Job Title</th>
+            <th>Score</th>
+            <th>Interview Date</th>
+            <th>Interview Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for match in matches %}
+          <tr>
+            <td>{{ match.resume_filename }}</td>
+            <td>{{ match.email }}</td>
+            <td>{{ match.job_title }}</td>
+            <td>{{ match.score }}</td>
+            <td>
+              <input type="date" name="date_{{ match.id }}" min="{{ current_date }}" required>
+            </td>
+            <td>
+              <input type="time" name="time_{{ match.id }}" min="09:00" max="17:00" required>
+              <input type="hidden" name="match_{{ match.id }}" value="1">
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <input type="submit" value="✅ Schedule Selected Interviews">
+    </form>
+  </div>
+</body>
+</html>

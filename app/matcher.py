@@ -73,7 +73,9 @@ def background_match_worker():
                         "jd_id": jd["_id"],
                         "match_result": result,
                         "timestamp": time.time(),
-                        "email_status":"Pending"
+                        "email_status":"Pending",
+                        "interview_status": "NOT_SORT_LISTED_YET",
+                        "interview_details": {"datetime": "NA"}
                     })
 
                     matched_hashes.add(combined_hash)

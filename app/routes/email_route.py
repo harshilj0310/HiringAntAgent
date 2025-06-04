@@ -69,15 +69,28 @@ def send_emails():
         if score >= THRESHOLD:
             subject = CONFIG["email_templates"]["shortlist"]["subject"].format(job=job)
             body = CONFIG["email_templates"]["shortlist"]["body"].format(job=job)
+
+            # Send email and update both statuses
+            send_email(from_email, email, subject, body)
+
+            matches_collection.update_one(
+                {"_id": match["_id"]},
+                {"$set": {
+                    "email_status": "Sent",
+                    "interview_status": "PENDING"
+                }}
+            )
+
         else:
             subject = CONFIG["email_templates"]["rejection"]["subject"].format(job=job)
             body = CONFIG["email_templates"]["rejection"]["body"].format(job=job)
 
-        send_email(from_email, email, subject, body)
+            # Send rejection email, no interview status change
+            send_email(from_email, email, subject, body)
 
-        matches_collection.update_one(
-            {"_id": match["_id"]},
-            {"$set": {"email_status": "Sent"}}
-        )
+            matches_collection.update_one(
+                {"_id": match["_id"]},
+                {"$set": {"email_status": "Sent"}}
+            )
 
     return "Selected emails sent successfully.", 200

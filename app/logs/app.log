@@ -193,3 +193,225 @@
 [2025-06-03 21:36:15] WARNING [werkzeug:97]  * Debugger is active!
 [2025-06-03 21:36:15] INFO [werkzeug:97]  * Debugger PIN: 515-862-772
 [2025-06-03 21:36:15] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:37:59] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-04 04:37:59] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-04 04:37:59] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-04 04:38:00] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-04 04:38:00] INFO [werkzeug:97]  * Debugger PIN: 653-267-824
+[2025-06-04 04:38:00] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:38:10] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:38:10] "GET / HTTP/1.1" 200 -
+[2025-06-04 04:38:10] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:38:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2025-06-04 04:38:39] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:38:39] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 04:38:39] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 04:38:47] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:38:47] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 04:38:47] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 04:38:52] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:38:52] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 04:38:52] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:39:24] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:39:24] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 04:39:24] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 04:39:30] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:39:30] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 04:39:30] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 04:39:35] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:39:35] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 04:40:17] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:40:17] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:40:49] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 04:40:56] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 04:40:56] INFO [root:52] SMTP server connection closed.
+[2025-06-04 04:40:56] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 04:41:01] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 04:41:01] INFO [root:52] SMTP server connection closed.
+[2025-06-04 04:41:02] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:41:02] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:46:41] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-04 04:46:41] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-04 04:46:41] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-04 04:46:42] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-04 04:46:43] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:46:43] INFO [werkzeug:97]  * Debugger PIN: 653-267-824
+[2025-06-04 04:46:52] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:46:52] "GET / HTTP/1.1" 200 -
+[2025-06-04 04:47:07] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:47:07] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:47:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:47:23] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 04:47:23] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 04:47:32] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:47:32] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 04:47:32] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 04:47:37] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:47:37] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 04:47:37] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:47:56] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:47:56] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:48:11] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:48:11] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 04:48:11] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 04:48:26] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:48:26] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 04:48:26] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 04:48:30] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:48:30] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 04:48:41] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:48:41] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:49:17] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 04:49:22] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 04:49:22] INFO [root:52] SMTP server connection closed.
+[2025-06-04 04:49:22] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:49:22] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:50:20] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:50:20] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:50:28] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 04:50:34] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 04:50:34] INFO [root:52] SMTP server connection closed.
+[2025-06-04 04:50:34] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:50:34] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 04:57:38] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-04 04:57:38] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-04 04:57:38] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-04 04:57:39] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-04 04:57:39] INFO [werkzeug:97]  * Debugger PIN: 653-267-824
+[2025-06-04 04:57:39] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:57:48] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 04:57:48] "GET / HTTP/1.1" 200 -
+[2025-06-04 04:58:47] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:58:47] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 04:58:47] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 04:58:56] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:58:56] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 04:58:56] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 04:59:00] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:59:00] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 04:59:00] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 04:59:32] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:59:32] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 04:59:32] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 04:59:41] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:59:41] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 04:59:41] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 04:59:46] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 04:59:46] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:00:08] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:00:08] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:00:24] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:00:29] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:00:30] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:00:30] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:00:35] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:00:35] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:00:35] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:00:35] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:01:16] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:01:16] "[33mGET /schedule-interviews HTTP/1.1[0m" 404 -
+[2025-06-04 05:05:39] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-04 05:05:39] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-04 05:05:39] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-04 05:05:40] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-04 05:05:40] INFO [werkzeug:97]  * Debugger PIN: 653-267-824
+[2025-06-04 05:05:40] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 05:06:26] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:06:26] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 05:06:26] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 05:06:34] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:06:34] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 05:06:34] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 05:06:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:06:40] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:06:40] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 05:07:15] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:07:15] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 05:07:15] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 05:07:24] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:07:24] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 05:07:24] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 05:07:29] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:07:29] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:08:09] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:08:09] "GET / HTTP/1.1" 200 -
+[2025-06-04 05:08:32] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:08:32] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:08:50] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:08:55] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:08:55] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:08:55] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:09:01] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:09:01] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:09:01] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:09:01] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:10:19] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:10:19] "GET /schedule-interviews HTTP/1.1" 200 -
+[2025-06-04 05:11:18] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:11:18] "POST /schedule-interviews HTTP/1.1" 200 -
+[2025-06-04 05:12:59] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:12:59] "GET / HTTP/1.1" 200 -
+[2025-06-04 05:40:53] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-04 05:40:53] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-04 05:40:53] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-04 05:40:54] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-04 05:40:54] INFO [werkzeug:97]  * Debugger PIN: 653-267-824
+[2025-06-04 05:40:54] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 05:40:57] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:40:57] "GET / HTTP/1.1" 200 -
+[2025-06-04 05:41:52] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:41:52] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 05:41:52] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 05:41:59] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:41:59] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 05:41:59] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 05:42:04] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:42:04] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:42:04] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 05:42:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:42:40] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 05:42:40] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 05:42:48] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:42:48] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 05:42:48] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 05:42:51] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:42:51] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:43:16] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:43:16] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:43:28] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:43:33] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:43:33] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:43:33] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:43:38] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:43:38] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:43:38] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:43:38] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:44:06] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:44:06] "GET /schedule-interviews HTTP/1.1" 200 -
+[2025-06-04 05:44:38] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:44:38] "[35m[1mPOST /schedule-interviews HTTP/1.1[0m" 500 -
+[2025-06-04 05:44:38] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:44:38] "GET /schedule-interviews?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+[2025-06-04 05:44:38] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:44:38] "GET /schedule-interviews?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+[2025-06-04 05:44:38] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:44:38] "GET /schedule-interviews?__debugger__=yes&cmd=resource&f=console.png&s=wKLGcz6QmD2DgmmsAgTR HTTP/1.1" 200 -
+[2025-06-04 05:44:38] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:44:38] "GET /schedule-interviews?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+[2025-06-04 05:46:51] INFO [werkzeug:97] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2025-06-04 05:46:51] INFO [werkzeug:97] [33mPress CTRL+C to quit[0m
+[2025-06-04 05:46:51] INFO [werkzeug:97]  * Restarting with stat
+[2025-06-04 05:46:52] WARNING [werkzeug:97]  * Debugger is active!
+[2025-06-04 05:46:52] INFO [werkzeug:97]  * Debugger PIN: 653-267-824
+[2025-06-04 05:46:52] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 05:46:58] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:46:58] "GET / HTTP/1.1" 200 -
+[2025-06-04 05:47:02] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:47:02] "GET /student HTTP/1.1" 200 -
+[2025-06-04 05:47:07] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:47:07] "GET /provider HTTP/1.1" 200 -
+[2025-06-04 05:47:18] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:47:18] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:47:23] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:47:23] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:47:41] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:47:41] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 05:47:41] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 05:47:47] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:47:47] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 05:47:47] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 05:47:52] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:47:52] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:47:52] INFO [root:16] ✅ Extracted text from PDF bytes
+[2025-06-04 05:48:28] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:48:28] INFO [root:104] ✅ Successfully parsed resume
+[2025-06-04 05:48:28] INFO [root:75] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-04 05:48:36] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:48:36] INFO [root:100] ✅ Successfully parsed JD JSON.
+[2025-06-04 05:48:36] INFO [root:58] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-04 05:48:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-04 05:48:40] INFO [root:67] ✅ Successfully parsed LLM response.
+[2025-06-04 05:49:14] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:49:14] "GET /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:49:25] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:49:30] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:49:30] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:49:30] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:49:36] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:49:37] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:49:37] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:49:37] "POST /send-mails HTTP/1.1" 200 -
+[2025-06-04 05:50:22] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:50:22] "GET /schedule-interviews HTTP/1.1" 200 -
+[2025-06-04 05:50:45] INFO [root:36] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-04 05:50:49] INFO [root:41] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-04 05:50:50] INFO [root:52] SMTP server connection closed.
+[2025-06-04 05:50:50] INFO [werkzeug:97] 127.0.0.1 - - [04/Jun/2025 05:50:50] "POST /schedule-interviews HTTP/1.1" 200 -
