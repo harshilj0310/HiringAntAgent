@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Your Interview Slot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --primary-color: #007bff;
+      --background-color: #f9f9ff;
+      --card-color: #ffffff;
+      --hover-color: #0056b3;
+      --text-color: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: var(--card-color);
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 25px;
+    }
+
+    .info {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .info p {
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    .slot-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .slot-list li {
+      margin: 15px 0;
+      background-color: #f2f6ff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slot-list input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
+
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 25px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: var(--hover-color);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      .slot-list li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🕒 Choose Your Preferred Interview Slot</h2>
+
+    <div class="info">
+      <p><strong>Job Title:</strong> {{ job_title }}</p>
+      <p><strong>Your Email:</strong> {{ candidate_email }}</p>
+    </div>
+
+    <form method="POST">
+      <ul class="slot-list">
+        {% for slot in slots %}
+          <li>
+            <label>
+              <input type="radio" name="selected_slot" value="{{ slot }}" required>
+              {{ slot }}
+            </label>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <input type="submit" value="✅ Confirm Selected Slot">
+    </form>
+  </div>
+</body>
+</html>

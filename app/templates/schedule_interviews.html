@@ -45,13 +45,14 @@
       color: var(--text-color);
     }
 
-    input[type="email"] {
+    input[type="email"],
+    input[type="datetime-local"] {
       width: 100%;
       padding: 10px;
       font-size: 16px;
       border-radius: 6px;
       border: 1px solid #ccc;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
     }
 
     table {
@@ -71,6 +72,7 @@
     td {
       padding: 12px;
       border-bottom: 1px solid #ddd;
+      vertical-align: top;
     }
 
     tr:hover {
@@ -78,13 +80,23 @@
       transition: background-color 0.3s ease;
     }
 
-    input[type="date"],
-    input[type="time"] {
-      padding: 8px;
-      width: 100%;
+    .slot-group {
+      margin-bottom: 10px;
+    }
+
+    .add-slot-btn {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 6px 10px;
       font-size: 14px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    .add-slot-btn:hover {
+      background-color: var(--hover-color);
     }
 
     input[type="submit"] {
@@ -109,9 +121,8 @@
         font-size: 13px;
       }
 
-      input[type="date"],
-      input[type="time"],
-      input[type="email"] {
+      input[type="email"],
+      input[type="datetime-local"] {
         font-size: 12px;
       }
 
@@ -120,6 +131,16 @@
       }
     }
   </style>
+  <script>
+    function addSlotField(matchId) {
+      const slotContainer = document.getElementById(`slots-container-${matchId}`);
+      const input = document.createElement("input");
+      input.type = "datetime-local";
+      input.name = `slots_${matchId}`;
+      input.required = true;
+      slotContainer.appendChild(input);
+    }
+  </script>
 </head>
 <body>
   <div class="container">
@@ -135,8 +156,7 @@
             <th>Email</th>
             <th>Job Title</th>
             <th>Score</th>
-            <th>Interview Date</th>
-            <th>Interview Time</th>
+            <th>Proposed Slots (1-hour each)</th>
           </tr>
         </thead>
         <tbody>
@@ -147,17 +167,18 @@
             <td>{{ match.job_title }}</td>
             <td>{{ match.score }}</td>
             <td>
-              <input type="date" name="date_{{ match.id }}" min="{{ current_date }}" required>
-            </td>
-            <td>
-              <input type="time" name="time_{{ match.id }}" min="09:00" max="17:00" required>
+              <div id="slots-container-{{ match.id }}">
+                <input type="datetime-local" name="slots_{{ match.id }}" required>
+              </div>
+              <button type="button" class="add-slot-btn" onclick="addSlotField('{{ match.id }}')">➕ Add Another Slot</button>
               <input type="hidden" name="match_{{ match.id }}" value="1">
             </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-      <input type="submit" value="✅ Schedule Selected Interviews">
+
+      <input type="submit" value="✅ Send Slot Options to Candidates">
     </form>
   </div>
 </body>

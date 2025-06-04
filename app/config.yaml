@@ -52,6 +52,33 @@ email_templates:
       Best regards,  
       Hiring Team
 
+  slot_selection:
+    subject: "Select Your Interview Slot for: {job}"
+    body: |
+      Dear Candidate,
+
+      You have been shortlisted for the "{job}" position.
+
+      Please select one of the preferred time slots for your interview using the following link:
+      👉 {confirm_link}
+
+      Thanks,  
+      Hiring Team
+
+  interview_confirmation:
+    subject: "Interview Confirmed for: {job}"
+    body: |
+      Dear Candidate,
+
+      ✅ Your interview for "{job}" is confirmed.
+
+      🗓️ Date & Time: {slot}
+
+      Please be ready at the scheduled time.
+
+      Best,  
+      Hiring Team
+
 prompts:
   resume_parsing: |
     Look for the following information from the resume text and extract them if they are present. contact information should pe provided as a dict object with keys like Email,Phone,LinkedIn:
@@ -68,3 +95,6 @@ prompts:
 
     Resume Text:
     {resume_text}
+
+host_url: "http://127.0.0.1:5000"
+default_sender_email: "shivamkumar878758@gmail.com"
