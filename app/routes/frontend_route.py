@@ -1,30 +1,44 @@
-# --- frontend_bp.py (Updated to handle GET routes only) ---
-from flask import Blueprint, render_template, request
+import logging
+from fastapi import APIRouter, Request
+from fastapi.responses import HTMLResponse, PlainTextResponse
+from fastapi.templating import Jinja2Templates
 from bson import ObjectId
 from app.db import matches_collection, resumes_collection, jds_collection
 
-frontend_bp = Blueprint('frontend', __name__)
+logger = logging.getLogger(__name__)
+frontend_router = APIRouter()
+templates = Jinja2Templates(directory="app/templates")
 
-@frontend_bp.route('/')
-def index():
-    return render_template("home.html")
+@frontend_router.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+    logger.info("Rendering home page.")
+    return templates.TemplateResponse("home.html", {"request": request})
 
-@frontend_bp.route('/upload-resume/<job_title>', methods=['GET'])
-def resume_form(job_title):
-    return render_template('upload_resume.html', job_title=job_title)
 
-@frontend_bp.route('/student')
-def student_form():
-    return render_template('student_form.html')
+@frontend_router.get("/upload-resume/{job_title}", response_class=HTMLResponse)
+async def resume_form(request: Request, job_title: str):
+    logger.info(f"Rendering resume upload page for job title: {job_title}")
+    return templates.TemplateResponse("upload_resume.html", {"request": request, "job_title": job_title})
 
-@frontend_bp.route('/provider')
-def provider_form():
-    return render_template('provider_form.html')
 
-@frontend_bp.route('/schedule-interviews', methods=['GET'])
-def schedule_interviews_page():
+@frontend_router.get("/student", response_class=HTMLResponse)
+async def student_form(request: Request):
+    logger.info("Rendering student form.")
+    return templates.TemplateResponse("student_form.html", {"request": request})
+
+
+@frontend_router.get("/provider", response_class=HTMLResponse)
+async def provider_form(request: Request):
+    logger.info("Rendering provider form.")
+    return templates.TemplateResponse("provider_form.html", {"request": request})
+
+
+@frontend_router.get("/schedule-interviews", response_class=HTMLResponse)
+async def schedule_interviews_page(request: Request):
+    logger.info("Rendering schedule interviews page.")
     pending_matches = list(matches_collection.find({"interview_status": "PENDING"}))
     matches_display = []
+
     for match in pending_matches:
         resume = resumes_collection.find_one({"_id": match["resume_id"]})
         jd = jds_collection.find_one({"_id": match["jd_id"]})
@@ -35,13 +49,16 @@ def schedule_interviews_page():
             "job_title": jd.get("job_title", jd.get("filename", "Unknown")) if jd else "Unknown",
             "score": match["match_result"].get("score", 0)
         })
-    return render_template("schedule_interviews.html", matches=matches_display)
 
-@frontend_bp.route("/confirm-slot/<match_id>", methods=['GET'])
-def confirm_slot_page(match_id):
+    return templates.TemplateResponse("schedule_interviews.html", {"request": request, "matches": matches_display})
+
+
+@frontend_router.get("/confirm-slot/{match_id}", response_class=HTMLResponse)
+async def confirm_slot_page(request: Request, match_id: str):
     match = matches_collection.find_one({"_id": ObjectId(match_id)})
     if not match or "interview_details" not in match:
-        return "Invalid match or no proposed slots found.", 404
+        logger.warning(f"No interview details for match {match_id}")
+        return PlainTextResponse("Invalid match or no proposed slots found.", status_code=404)
 
     slots = match["interview_details"].get("proposed_slots", [])
     resume = resumes_collection.find_one({"_id": match["resume_id"]})
@@ -49,12 +66,19 @@ def confirm_slot_page(match_id):
     job_title = jd.get("job_title", jd.get("filename", "Unknown"))
     candidate_email = resume.get("email")
 
-    return render_template("confirm_slot.html", slots=slots, job_title=job_title, candidate_email=candidate_email)
+    return templates.TemplateResponse("confirm_slot.html", {
+        "request": request,
+        "slots": slots,
+        "job_title": job_title,
+        "candidate_email": candidate_email
+    })
 
-@frontend_bp.route('/send-mails', methods=['GET'])
-def email_form():
+
+@frontend_router.get("/send-mails", response_class=HTMLResponse)
+async def email_form(request: Request):
+    logger.info("Rendering email form page.")
     pending_matches = list(matches_collection.find({"email_status": "Pending"}))
-    
+
     matches_display = []
     for match in pending_matches:
         resume = resumes_collection.find_one({"_id": match["resume_id"]})
@@ -63,7 +87,8 @@ def email_form():
             "id": str(match["_id"]),
             "resume_filename": resume.get("filename", "Unknown") if resume else "Unknown",
             "job_title": jd.get("job_title", jd.get("filename", "Unknown")) if jd else "Unknown",
-            "score": match["match_result"].get("score", 0) if "match_result" in match else 0,
-            "explanation": match["match_result"].get("explanation", "No explanation provided") if "match_result" in match else "No explanation provided"
+            "score": match.get("match_result", {}).get("score", 0),
+            "explanation": match.get("match_result", {}).get("explanation", "No explanation provided")
         })
-    return render_template("send_emails.html", matches=matches_display)
+
+    return templates.TemplateResponse("send_emails.html", {"request": request, "matches": matches_display})

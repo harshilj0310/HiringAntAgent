@@ -1,48 +1,51 @@
-from flask import Blueprint, request, jsonify
 import logging
-from werkzeug.utils import secure_filename
+from fastapi import APIRouter, UploadFile, File
+from fastapi.responses import JSONResponse
 from datetime import datetime
+from werkzeug.utils import secure_filename
+
 from app.db import jds_collection, fs
 from app.config import CONFIG
 
 logger = logging.getLogger(__name__)
+jd_router = APIRouter()
 
-jd_bp = Blueprint('jd', __name__)
+@jd_router.post("/upload-jd")
+async def upload_jd(jd: UploadFile = File(...)):
+    if not jd.filename:
+        logger.error("No file uploaded.")
+        return JSONResponse(status_code=400, content={"error": "No file uploaded"})
 
-@jd_bp.route('/upload-jd', methods=['POST'])
-def upload_jd():
-    file = request.files.get('jd')
-    if not file or file.filename == '':
-        return jsonify({"error": "No file uploaded"}), 400
-
-    # Validate file extension
     allowed_exts = CONFIG.get("allowed_extensions_JD", [])
-    if '.' not in file.filename or file.filename.rsplit('.', 1)[1].lower() not in allowed_exts:
-        return jsonify({"error": "Invalid file type"}), 400
+    if '.' not in jd.filename or jd.filename.rsplit('.', 1)[1].lower() not in allowed_exts:
+        logger.warning(f"Invalid file type attempted: {jd.filename}")
+        return JSONResponse(status_code=400, content={"error": "Invalid file type"})
 
-    # Secure and read the file
-    filename = secure_filename(file.filename)
+    filename = secure_filename(jd.filename)
     extension = filename.rsplit('.', 1)[1].lower()
-    file_data = file.read()
+    file_data = await jd.read()
 
-    # Save file to GridFS
-    file_id = fs.put(file_data, filename=filename)
+    try:
+        file_id = fs.put(file_data, filename=filename)
+        metadata = {
+            "filename": filename,
+            "uploaded_at": datetime.utcnow(),
+            "size_bytes": len(file_data),
+            "extension": extension,
+            "file_id": file_id
+        }
 
-    # Store metadata
-    metadata = {
-        "filename": filename,
-        "uploaded_at": datetime.utcnow(),
-        "size_bytes": len(file_data),
-        "extension": extension,
-        "file_id": file_id
-    }
+        result = jds_collection.insert_one(metadata)
+        metadata["_id"] = str(result.inserted_id)
+        metadata["file_id"] = str(file_id)
 
-    result = jds_collection.insert_one(metadata)
-    metadata["_id"] = str(result.inserted_id)
-    metadata["file_id"] = str(file_id)
+        logger.info(f"JD uploaded: {filename}, ID: {metadata['_id']}")
+        return JSONResponse(status_code=201, content={
+            "message": "JD uploaded and stored in DB successfully",
+            "jd_id": metadata["_id"],
+            "metadata": metadata
+        })
 
-    return jsonify({
-        "message": "JD uploaded and stored in DB successfully",
-        "jd_id": str(result.inserted_id),
-        "metadata": metadata
-    }), 201
+    except Exception as e:
+        logger.exception("Error while uploading JD")
+        return JSONResponse(status_code=500, content={"error": "Internal server error"})

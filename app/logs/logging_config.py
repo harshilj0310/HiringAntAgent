@@ -1,11 +1,14 @@
 import logging
 import logging.config
 from pathlib import Path
+from logging.handlers import RotatingFileHandler
 
 def setup_logging(
     log_file: str = "app/logs/app.log",
     log_level: int = logging.INFO,
-    console_level: int = logging.INFO
+    console_level: int = logging.INFO,
+    max_bytes: int = 5 * 1024 * 1024,  # 5MB
+    backup_count: int = 5
 ):
     Path(log_file).parent.mkdir(parents=True, exist_ok=True)
 
@@ -20,10 +23,12 @@ def setup_logging(
         },
         "handlers": {
             "file": {
-                "class": "logging.FileHandler",
+                "class": "logging.handlers.RotatingFileHandler",
                 "filename": log_file,
                 "formatter": "default",
                 "level": log_level,
+                "maxBytes": max_bytes,
+                "backupCount": backup_count,
             },
             "console": {
                 "class": "logging.StreamHandler",

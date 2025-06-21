@@ -1,33 +1,39 @@
 import logging
-from flask import Blueprint, request
+from fastapi import APIRouter, Form, Request, status
+from fastapi.responses import PlainTextResponse
+from typing import List
 from app.tools.email2 import send_email
 from app.config import CONFIG
 from app.db import matches_collection, resumes_collection, jds_collection
 from bson import ObjectId
 
 logger = logging.getLogger(__name__)
-email_bp = Blueprint('email', __name__)
+email_router = APIRouter()
 THRESHOLD = CONFIG["threshold"]
 
-@email_bp.route('/send-mails', methods=['POST'])
-def send_emails():
-    from_email = request.form.get("from_email")
-    proceed = request.form.get("proceed") == "on"
-    match_ids = request.form.getlist("matches")
+@email_router.post("/send-mails")
+async def send_emails(
+    request: Request,
+    from_email: str = Form(...),
+    proceed: str = Form(...),
+    matches: List[str] = Form(...)
+):
+    if not matches or not from_email:
+        logger.warning("Missing matches or from_email in form data.")
+        return PlainTextResponse("Missing matches or from_email", status_code=status.HTTP_400_BAD_REQUEST)
 
-    if not match_ids or not from_email:
-        return "Missing matches or from_email", 400
+    if proceed != "on":
+        logger.info("User cancelled email sending.")
+        return PlainTextResponse("Mail sending cancelled by user.", status_code=status.HTTP_200_OK)
 
-    if not proceed:
-        return "Mail sending cancelled by user.", 200
-
-    object_ids = [ObjectId(mid) for mid in match_ids]
+    object_ids = [ObjectId(mid) for mid in matches]
 
     raw_matches = matches_collection.find({
         "_id": {"$in": object_ids},
         "email_status": "Pending"
     })
 
+    sent_count = 0
     for match in raw_matches:
         resume = resumes_collection.find_one({"_id": match["resume_id"]})
         jd = jds_collection.find_one({"_id": match["jd_id"]})
@@ -47,7 +53,7 @@ def send_emails():
         if score >= THRESHOLD:
             subject = CONFIG["email_templates"]["shortlist"]["subject"].format(job=job)
             body = CONFIG["email_templates"]["shortlist"]["body"].format(job=job)
-
+            logger.info(f"Shortlisting candidate: {email} for {job}")
             send_email(from_email, email, subject, body)
 
             matches_collection.update_one(
@@ -60,12 +66,14 @@ def send_emails():
         else:
             subject = CONFIG["email_templates"]["rejection"]["subject"].format(job=job)
             body = CONFIG["email_templates"]["rejection"]["body"].format(job=job)
-
+            logger.info(f"Rejecting candidate: {email} for {job}")
             send_email(from_email, email, subject, body)
 
             matches_collection.update_one(
                 {"_id": match["_id"]},
                 {"$set": {"email_status": "Sent"}}
             )
+        sent_count += 1
 
-    return "Selected emails sent successfully.", 200
+    logger.info(f"Emails sent successfully for {sent_count} matches.")
+    return PlainTextResponse("Selected emails sent successfully.", status_code=status.HTTP_200_OK)
