@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume–JD Matcher</title>
+    <style>
+        body {
+            background-color: #f4f6f8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            color: #2c3e50;
+            font-size: 26px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #statusMessage {
+            margin-top: 20px;
+            font-size: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto 0;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Trigger Resume–JD Matching</h1>
+        <button id="triggerMatchBtn">Run Matching</button>
+        <div class="loader" id="loadingSpinner"></div>
+        <p id="statusMessage"></p>
+    </div>
+
+    <script>
+        const triggerButton = document.getElementById("triggerMatchBtn");
+        const statusMsg = document.getElementById("statusMessage");
+        const spinner = document.getElementById("loadingSpinner");
+
+        triggerButton.addEventListener("click", async () => {
+            statusMsg.textContent = "";
+            spinner.style.display = "block";
+            triggerButton.disabled = true;
+            triggerButton.textContent = "Running...";
+
+            try {
+                const response = await fetch("/trigger-matching", {
+                    method: "POST",
+                });
+
+                const data = await response.json();
+                statusMsg.textContent = data.message || "Matching completed.";
+            } catch (error) {
+                console.error("Error triggering match:", error);
+                statusMsg.textContent = "⚠️ Failed to trigger matching.";
+            } finally {
+                spinner.style.display = "none";
+                triggerButton.disabled = false;
+                triggerButton.textContent = "Run Matching";
+            }
+        });
+    </script>
+</body>
+</html>

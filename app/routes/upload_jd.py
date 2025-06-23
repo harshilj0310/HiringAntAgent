@@ -27,25 +27,29 @@ async def upload_jd(jd: UploadFile = File(...)):
 
     try:
         file_id = fs.put(file_data, filename=filename)
+
         metadata = {
             "filename": filename,
             "uploaded_at": datetime.utcnow(),
             "size_bytes": len(file_data),
             "extension": extension,
-            "file_id": file_id
+            "file_id": str(file_id)
         }
 
         result = jds_collection.insert_one(metadata)
-        metadata["_id"] = str(result.inserted_id)
-        metadata["file_id"] = str(file_id)
+        response_metadata = metadata.copy()
+        response_metadata["_id"] = str(result.inserted_id)
+        response_metadata["file_id"] = str(file_id)
+        response_metadata["uploaded_at"] = metadata["uploaded_at"].isoformat()
 
-        logger.info(f"JD uploaded: {filename}, ID: {metadata['_id']}")
+        logger.info(f"JD uploaded: {filename}, ID: {response_metadata['_id']}")
         return JSONResponse(status_code=201, content={
             "message": "JD uploaded and stored in DB successfully",
-            "jd_id": metadata["_id"],
-            "metadata": metadata
+            "jd_id": response_metadata["_id"],
+            "metadata": response_metadata
         })
 
     except Exception as e:
         logger.exception("Error while uploading JD")
         return JSONResponse(status_code=500, content={"error": "Internal server error"})
+    

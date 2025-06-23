@@ -96,5 +96,5 @@ prompts:
     Resume Text:
     {resume_text}
 
-host_url: "http://127.0.0.1:5000"
+host_url: "http://127.0.0.1:8000"
 default_sender_email: "shivamkumar878758@gmail.com"

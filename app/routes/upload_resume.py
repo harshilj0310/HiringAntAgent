@@ -1,3 +1,4 @@
+from copy import deepcopy
 import logging
 from fastapi import APIRouter, UploadFile, File, Form
 from fastapi.responses import JSONResponse
@@ -42,9 +43,10 @@ async def upload_resume(
 
     try:
         file_id = fs.put(file_data, filename=filename, content_type=resume.content_type)
+        uploaded_time = datetime.utcnow()
         metadata = {
             "filename": filename,
-            "uploaded_at": datetime.utcnow(),
+            "uploaded_at": uploaded_time,
             "size_bytes": len(file_data),
             "extension": extension,
             "job_description_title": job_description_title,
@@ -58,14 +60,17 @@ async def upload_resume(
         }
 
         result = resumes_collection.insert_one(metadata)
-        metadata["_id"] = str(result.inserted_id)
-        metadata["file_id"] = str(file_id)
 
-        logger.info(f"Resume uploaded: {filename}, ID: {metadata['_id']}")
+        # Now create a JSON-serializable copy
+        response_metadata = deepcopy(metadata)
+        response_metadata["_id"] = str(result.inserted_id)
+        response_metadata["file_id"] = str(file_id)
+        response_metadata["uploaded_at"] = uploaded_time.isoformat()
+
         return JSONResponse(status_code=201, content={
             "message": "Resume uploaded and stored in DB successfully",
-            "resume_id": metadata["_id"],
-            "metadata": metadata
+            "resume_id": response_metadata["_id"],
+            "metadata": response_metadata
         })
 
     except Exception as e:

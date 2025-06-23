@@ -92,3 +92,7 @@ async def email_form(request: Request):
         })
 
     return templates.TemplateResponse("send_emails.html", {"request": request, "matches": matches_display})
+
+@frontend_router.get("/trigger-match", response_class=HTMLResponse)
+async def trigger_match_page(request: Request):
+    return templates.TemplateResponse("trigger_match.html", {"request": request})
