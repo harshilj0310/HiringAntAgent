@@ -4,58 +4,37 @@ import logging
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+from app.config import CONFIG
 
-# ============================================
-# ✅ Setup Logging
-# ============================================
+load_dotenv()
+
+MODEL_NAME = os.getenv("OPENAI_MODEL_NAME", "gpt-4")
+MODEL_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", 0))
+MAX_TOKENS = int(os.getenv("OPENAI_MAX_TOKENS", 2048))
+
 log_file = os.path.join(os.path.dirname(__file__), "..", "logs", "matcher.log")
 os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
-logging.basicConfig(
-    filemode="a",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+logger = logging.getLogger(__name__)
+
+llm = ChatOpenAI(
+    model=MODEL_NAME,
+    temperature=MODEL_TEMPERATURE,
+    max_tokens=MAX_TOKENS
 )
-
-# ============================================
-# ✅ Load .env file (ensure it contains your OpenAI API key)
-# ============================================
-# .env content should include:
-# OPENAI_API_KEY=your_openai_api_key_here
-load_dotenv()
-
-# ============================================
-# ✅ Define Prompt and LLM
-# ============================================
-llm = ChatOpenAI(model="gpt-4", temperature=0)
 
 match_prompt = PromptTemplate(
     input_variables=["resume_json", "jd_json"],
-    template="""
-You are a hiring assistant. Based on the following Job Description and Resume (both in JSON), evaluate how well the candidate fits the job.
-
-Job Description:
-{jd_json}
-
-Resume:
-{resume_json}
-
-Respond ONLY in JSON format with:
-- gpt_score: integer score from 0 to 100 indicating match quality.
-- gpt_explanation: short explanation (2-3 lines) for the score.
-
-JSON Output:
-"""
+    template=CONFIG["prompts"]["match_prompt"]
 )
 
 chain = match_prompt | llm
 
-# ============================================
-# ✅ Matching Function
-# ============================================
 def match_parsed_resume_to_job(resume_json, jd_json):
     try:
-        logging.info("📩 Invoking LLM with resume and job description JSON.")
+        logger.info("📩 Invoking LLM with resume and job description JSON.")
+        logger.debug(f"Resume JSON: {json.dumps(resume_json)[:1000]}")
+        logger.debug(f"JD JSON: {json.dumps(jd_json)[:1000]}")
 
         response = chain.invoke({
             "resume_json": json.dumps(resume_json),
@@ -64,9 +43,9 @@ def match_parsed_resume_to_job(resume_json, jd_json):
 
         try:
             output = json.loads(response.content.strip())
-            logging.info("✅ Successfully parsed LLM response.")
+            logger.info("✅ Successfully parsed LLM response.")
         except json.JSONDecodeError as je:
-            logging.error(f"❌ Failed to parse JSON from LLM: {je}")
+            logger.error(f"❌ Failed to parse JSON from LLM: {je}")
             return {
                 "gpt_score": "N/A",
                 "gpt_explanation": "Invalid JSON returned from model."
@@ -78,7 +57,7 @@ def match_parsed_resume_to_job(resume_json, jd_json):
         }
 
     except Exception as e:
-        logging.exception(f"❌ Exception during match_parsed_resume_to_job: {e}")
+        logger.exception(f"❌ Exception during match_parsed_resume_to_job: {e}")
         return {
             "gpt_score": "N/A",
             "gpt_explanation": f"Error during matching: {str(e)}"

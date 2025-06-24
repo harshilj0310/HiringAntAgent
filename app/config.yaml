@@ -96,5 +96,38 @@ prompts:
     Resume Text:
     {resume_text}
 
+  jd_parsing: |
+    Extract structured information from the following Job Description (JD).
+    Return a JSON object with the following fields:
+    - "job_title": (string)
+    - "required_skills": (list of strings)
+    - "preferred_skills": (list of strings)
+    - "experience_required": (string, years required)
+    - "location": (string)
+    - "job_type": (Full-time, Part-time, Contract, Internship etc.)
+    - "education_required": (string)
+    - "responsibilities": (list of key responsibilities)
+
+    Job Description:
+    {jd_text}
+
+    JSON Output:
+  
+  match_prompt: |
+    You are a hiring assistant. Based on the following Job Description and Resume (both in JSON), evaluate how well the candidate fits the job.
+
+    Job Description:
+    {jd_json}
+
+    Resume:
+    {resume_json}
+
+    Respond ONLY in JSON format with:
+    - gpt_score: integer score from 0 to 100 indicating match quality.
+    - gpt_explanation: short explanation (2-3 lines) for the score.
+
+    JSON Output:
+
+
 host_url: "http://127.0.0.1:8000"
 default_sender_email: "shivamkumar878758@gmail.com"

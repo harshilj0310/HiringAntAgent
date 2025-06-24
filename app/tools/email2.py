@@ -8,12 +8,7 @@ import logging
 # Load environment variables
 load_dotenv()
 
-# Configure logging
-logging.basicConfig(
-
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s"
-)
+logger = logging.getLogger(__name__)
 
 def send_email(from_email, to_email, subject, body):
     from_password = os.getenv("EMAIL_PASSWORD")

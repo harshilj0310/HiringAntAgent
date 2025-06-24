@@ -1,112 +1,89 @@
 import json
 import os
-import logging,yaml
-from langchain.tools import Tool
-from langchain_openai import ChatOpenAI
-from langchain.prompts import PromptTemplate
-from PyPDF2 import PdfReader
-from dotenv import load_dotenv
+import logging
 from io import BytesIO
+from dotenv import load_dotenv
+from PyPDF2 import PdfReader
+from langchain.prompts import PromptTemplate
+from langchain_openai import ChatOpenAI
+from app.config import CONFIG
 
-def extract_text_from_pdf_bytes(pdf_bytes):
-    try:
-        pdf_stream = BytesIO(pdf_bytes)
-        reader = PdfReader(pdf_stream)
-        text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
-        logging.info(f"✅ Extracted text from PDF bytes")
-        return text
-    except Exception as e:
-        logging.error(f"❌ Error reading PDF bytes: {e}")
-        raise e
-# ============================================
-# ✅ Load environment variables from .env
-# ============================================
-# .env must include: OPENAI_API_KEY=your_openai_api_key
 load_dotenv()
 
-# ============================================
-# ✅ Setup logging
-# ============================================
-log_file = os.path.join(os.path.dirname(__file__), "..", "logs", "resume_parser.log")
-os.makedirs(os.path.dirname(log_file), exist_ok=True)
+logger = logging.getLogger(__name__)
 
-logging.basicConfig(
-    filemode="a",
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
-)
-
-# ============================================
-# ✅ Define the resume parsing prompt
-# ============================================
-# Load YAML config once at the module level
-CONFIG_PATH = 'app/config.yaml'
-
-with open(CONFIG_PATH, 'r') as f:
-    config = yaml.safe_load(f)
-
-resume_prompt_template = config.get("prompts", {}).get("resume_parsing", "")
+resume_prompt_template = CONFIG.get("prompts", {}).get("resume_parsing", "")
+if not resume_prompt_template or "{resume_text}" not in resume_prompt_template:
+    logger.critical("❌ Resume parsing prompt is missing or invalid in CONFIG.")
+    raise ValueError("Invalid prompt template. Please define `resume_parsing` properly in CONFIG.")
 
 resume_parsing_prompt = PromptTemplate(
     input_variables=["resume_text"],
     template=resume_prompt_template
 )
 
-# ============================================
-# ✅ Initialize the LLM
-# ============================================
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+model_name = os.getenv("OPENAI_MODEL", "gpt-3.5-turbo")
+temperature = float(os.getenv("OPENAI_TEMPERATURE", 0))
+max_tokens = int(os.getenv("OPENAI_MAX_TOKENS", 1024))
 
-# ============================================
-# ✅ Create parsing chain
-# ============================================
+try:
+    llm = ChatOpenAI(
+        model=model_name,
+        temperature=temperature,
+        max_tokens=max_tokens,
+        request_timeout=15
+    )
+except Exception as e:
+    logger.critical(f"❌ Failed to initialize LLM: {e}")
+    raise
+
 parsing_chain = resume_parsing_prompt | llm
 
-# ============================================
-# ✅ Function to extract text from PDF
-# ============================================
-def extract_text_from_pdf(pdf_path):
-    if not os.path.exists(pdf_path):
-        raise FileNotFoundError(f"File not found: {pdf_path}")
-
-    text = ""
-    file = None
+def extract_text_from_pdf_bytes(pdf_bytes: bytes) -> str:
     try:
-        file = open(pdf_path, "rb")
-        reader = PdfReader(file)
-        text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
-        logging.info(f"✅ Extracted text from PDF: {pdf_path}")
+        pdf_stream = BytesIO(pdf_bytes)
+        reader = PdfReader(pdf_stream)
+        text = "\n".join(filter(None, [page.extract_text() for page in reader.pages]))
+        logger.info("✅ Extracted text from PDF bytes")
+        return text
     except Exception as e:
-        logging.error(f"❌ Error reading PDF: {e}")
-        raise e
-    finally:
-        if file:
-            file.close()
-    return text
+        logger.error(f"❌ Error reading PDF bytes: {e}")
+        raise ValueError("Unable to read PDF content.")
 
-# ============================================
-# ✅ Function to parse resume
-# ============================================
-def parse_resume(input_data):
-    """
-    input_data: str (file path) OR bytes (PDF content)
-    """
+def extract_text_from_pdf(pdf_path: str) -> str:
+    if not os.path.exists(pdf_path) or not pdf_path.lower().endswith(".pdf"):
+        raise FileNotFoundError(f"Invalid file path: {pdf_path}")
+    try:
+        with open(pdf_path, "rb") as file:
+            reader = PdfReader(file)
+            text = "\n".join(filter(None, [page.extract_text() for page in reader.pages]))
+            logger.info(f"✅ Extracted text from PDF: {pdf_path}")
+            return text
+    except Exception as e:
+        logger.error(f"❌ Error reading PDF: {e}")
+        raise ValueError("Unable to extract text from PDF.")
+
+def parse_resume(input_data: bytes | str) -> dict:
     try:
         if isinstance(input_data, bytes):
             resume_text = extract_text_from_pdf_bytes(input_data)
         elif isinstance(input_data, str):
             resume_text = extract_text_from_pdf(input_data)
         else:
-            raise TypeError("parse_resume input must be file path string or bytes")
+            raise TypeError("parse_resume input must be a file path string or bytes")
+
+        resume_text = resume_text[:3000]
+        logger.debug("🔍 Resume text sent to GPT (truncated):")
+        logger.debug(resume_text)
 
         response = parsing_chain.invoke({"resume_text": resume_text})
         parsed = json.loads(response.content.strip())
-        logging.info(f"✅ Successfully parsed resume")
+        logger.info("✅ Successfully parsed resume")
         return parsed
 
     except json.JSONDecodeError as je:
-        logging.error(f"❌ JSON parsing failed: {je}")
+        logger.error(f"❌ JSON parsing failed: {je}")
         return {"error": "Invalid JSON returned from model."}
     except Exception as e:
-        logging.exception(f"❌ Exception during resume parsing: {e}")
+        logger.exception(f"❌ Exception during resume parsing: {e}")
         return {"error": str(e)}
