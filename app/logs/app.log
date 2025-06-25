@@ -1,0 +1,1026 @@
+[2025-06-25 13:19:34] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 13:19:34] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 13:19:34] INFO [uvicorn.error:80] Started reloader process [78931] using WatchFiles
+[2025-06-25 13:19:35] INFO [uvicorn.error:83] Started server process [78951]
+[2025-06-25 13:19:35] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 13:19:35] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 13:19:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:37] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:39] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:19:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:41] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:41] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:19:42] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 13:20:21] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:20:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:24] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 13:20:24] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:38] INFO [app.routes.upload_jd:45] JD uploaded: ML_engineer.txt, ID: 685bf7a6602196a250e9f590
+[2025-06-25 13:20:39] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:20:43] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:20:43] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:21:15] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 13:21:16] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 13:21:16] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:21:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:21:23] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 13:21:23] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 13:21:23] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 13:21:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:21:33] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:21:33] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 13:21:33] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 13:21:34] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:21:34] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:21:40] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:21:40] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 13:21:41] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:21:41] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:22:02] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 13:22:02] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:22:10] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for ML_engineer.txt
+[2025-06-25 13:22:10] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 13:22:10] INFO [root:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 13:22:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:22:14] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-237d83fc120sm131741025ad.87 - gsmtp')
+[2025-06-25 13:22:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:22:14] INFO [root:48] SMTP server connection closed.
+[2025-06-25 13:22:14] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 13:22:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:22:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:39] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:24:39] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:42] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 13:24:43] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:44] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:46] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 13:24:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:24:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:06] INFO [app.routes.upload_jd:45] JD uploaded: Market_analyst.txt, ID: 685bf8b2602196a250e9f594
+[2025-06-25 13:25:06] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:15] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 13:25:15] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 13:25:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:19] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:25:19] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 13:25:19] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 13:25:19] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 13:25:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:28] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:25:28] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 13:25:28] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 13:25:28] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:33] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:25:33] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 13:25:33] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:25:47] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 13:25:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:26:00] INFO [app.routes.email_route:69] Rejecting candidate: shivamkumar878758@gmail.com for Market_analyst.txt
+[2025-06-25 13:26:00] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 13:26:00] INFO [root:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 13:26:00] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:26:04] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-315f53f1ac5sm1950001a91.42 - gsmtp')
+[2025-06-25 13:26:04] INFO [root:48] SMTP server connection closed.
+[2025-06-25 13:26:04] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 13:26:04] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:30:18] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:30:19] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:30:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:30:21] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:30:21] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:03] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:31:03] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:06] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 13:31:07] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:07] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:23] INFO [app.routes.upload_jd:45] JD uploaded: AI_engineer.txt, ID: 685bfa2b602196a250e9f598
+[2025-06-25 13:31:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:29] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 13:31:29] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 13:31:30] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:30] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:35] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:31:35] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 13:31:35] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 13:31:35] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 13:31:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:43] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:31:43] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 13:31:43] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 13:31:43] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:31:48] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:31:48] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 13:31:48] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:32:06] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 13:32:06] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:32:15] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 13:32:15] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 13:32:15] INFO [root:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 13:32:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:32:19] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-237d8393210sm137666585ad.49 - gsmtp')
+[2025-06-25 13:32:19] INFO [root:48] SMTP server connection closed.
+[2025-06-25 13:32:19] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 13:32:19] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:41:49] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 13:41:49] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 13:41:49] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 13:41:49] INFO [uvicorn.error:93] Finished server process [78951]
+[2025-06-25 13:41:49] INFO [uvicorn.error:116] Stopping reloader process [78931]
+[2025-06-25 13:47:20] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 13:47:20] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 13:47:20] INFO [uvicorn.error:80] Started reloader process [85080] using WatchFiles
+[2025-06-25 13:47:22] INFO [uvicorn.error:83] Started server process [85091]
+[2025-06-25 13:47:22] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 13:47:22] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 13:47:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:47:25] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:47:26] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:47:26] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:47:27] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 13:47:27] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:47:53] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:47:53] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:47:55] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 13:47:55] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:10] INFO [app.routes.upload_jd:45] JD uploaded: ML_engineer.txt, ID: 685bfe1aeb7d623fe8e38bba
+[2025-06-25 13:48:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:17] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 13:48:17] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 13:48:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:48:23] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 13:48:23] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 13:48:23] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 13:48:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:34] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:48:34] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 13:48:34] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 13:48:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:48:39] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:48:39] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 13:48:39] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:49:06] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:49:06] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:49:09] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 13:49:09] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:49:19] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for ML_engineer.txt
+[2025-06-25 13:49:19] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 13:49:19] INFO [root:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 13:49:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:49:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:49:23] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-315f53c19c1sm1797910a91.22 - gsmtp')
+[2025-06-25 13:49:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:49:24] INFO [root:48] SMTP server connection closed.
+[2025-06-25 13:49:24] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 13:49:24] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:50:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:50:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:51:52] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 13:51:52] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:51:54] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 13:51:54] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:00] INFO [app.routes.upload_jd:45] JD uploaded: AI_engineer.txt, ID: 685bff00eb7d623fe8e38bbe
+[2025-06-25 13:52:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:07] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 13:52:07] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 13:52:07] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:13] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:52:13] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 13:52:13] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 13:52:13] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 13:52:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:52:23] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 13:52:23] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 13:52:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:52:28] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 13:52:28] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 13:52:28] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:53:23] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 13:53:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:53:30] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 13:53:30] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 13:53:30] INFO [root:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 13:53:30] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:53:34] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-237d8393440sm137892505ad.35 - gsmtp')
+[2025-06-25 13:53:35] INFO [root:48] SMTP server connection closed.
+[2025-06-25 13:53:35] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 13:53:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 13:54:43] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 13:54:43] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 13:54:43] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 13:54:43] INFO [uvicorn.error:93] Finished server process [85091]
+[2025-06-25 13:54:43] INFO [uvicorn.error:116] Stopping reloader process [85080]
+[2025-06-25 14:06:08] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 14:06:08] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 14:06:08] INFO [uvicorn.error:80] Started reloader process [89181] using WatchFiles
+[2025-06-25 14:06:09] INFO [uvicorn.error:83] Started server process [89220]
+[2025-06-25 14:06:09] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:06:09] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:06:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:06:13] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 14:06:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:06:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:06:16] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 14:06:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:06:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:22:11] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:22:11] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:22:11] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:22:11] INFO [uvicorn.error:93] Finished server process [89220]
+[2025-06-25 14:22:11] INFO [uvicorn.error:116] Stopping reloader process [89181]
+[2025-06-25 14:25:47] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 14:25:47] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 14:25:47] INFO [uvicorn.error:80] Started reloader process [92893] using WatchFiles
+[2025-06-25 14:25:49] INFO [uvicorn.error:83] Started server process [92918]
+[2025-06-25 14:25:49] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:25:49] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:25:49] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:25:54] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 14:25:54] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:25:55] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 14:25:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:25:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:25:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:17] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 14:26:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:19] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 14:26:19] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:33] INFO [app.routes.upload_jd:45] JD uploaded: AI_engineer.txt, ID: 685c0719d42bca6e5bfab8a0
+[2025-06-25 14:26:33] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:36] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 14:26:37] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:37] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:40] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 14:26:40] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 14:26:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:47] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:26:47] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 14:26:47] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 14:26:47] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 14:26:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:55] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:26:55] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 14:26:55] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 14:26:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:26:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:00] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:27:00] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 14:27:00] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:10] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 14:27:11] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:12] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:12] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:25] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 14:27:25] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 14:27:25] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 14:27:25] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 14:27:25] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:30] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-749b5e21120sm5015299b3a.43 - gsmtp')
+[2025-06-25 14:27:30] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:27:30] INFO [root:48] SMTP server connection closed.
+[2025-06-25 14:27:30] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 14:34:42] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:34:42] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:35:03] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:35:03] WARNING [uvicorn.error:55] WatchFiles detected changes in 'run.py'. Reloading...
+[2025-06-25 14:35:03] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:35:03] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:35:03] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:35:03] INFO [uvicorn.error:93] Finished server process [92918]
+[2025-06-25 14:35:03] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:35:05] INFO [uvicorn.error:83] Started server process [94993]
+[2025-06-25 14:35:05] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:35:05] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:35:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:36:27] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:36:27] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/tools/email2.py'. Reloading...
+[2025-06-25 14:36:27] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:36:27] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:36:27] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:36:27] INFO [uvicorn.error:93] Finished server process [94993]
+[2025-06-25 14:36:27] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:36:28] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 14:36:28] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:36:29] INFO [uvicorn.error:83] Started server process [95299]
+[2025-06-25 14:36:29] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:36:29] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:36:29] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:10] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 14:37:11] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:11] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:12] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 14:37:13] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:13] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:22] INFO [app.routes.upload_jd:45] JD uploaded: Software_dev.txt, ID: 685c09a2365dd6af70cf78b0
+[2025-06-25 14:37:22] INFO [app.routes.upload_jd:45] JD uploaded: Software_dev.txt, ID: 685c09a2365dd6af70cf78b3
+[2025-06-25 14:37:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:48] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 14:37:48] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 14:37:49] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:37:54] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:37:54] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 14:37:54] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 14:37:54] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 14:37:54] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:01] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:38:01] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 14:38:01] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 14:38:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:06] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:38:06] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 14:38:06] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 14:38:06] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 14:38:06] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:14] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:38:14] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 14:38:14] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 14:38:14] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 14:38:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:22] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:38:22] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 14:38:22] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 14:38:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:26] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 14:38:26] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 14:38:26] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:44] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 14:38:44] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:56] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for Software_dev.txt
+[2025-06-25 14:38:56] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 14:38:56] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 14:38:56] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 14:38:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:38:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:39:00] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-749c889d219sm4521037b3a.180 - gsmtp')
+[2025-06-25 14:39:00] INFO [root:48] SMTP server connection closed.
+[2025-06-25 14:39:00] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 14:39:00] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:09] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:09] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/__init__.py'. Reloading...
+[2025-06-25 14:50:09] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:50:09] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:50:09] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:50:09] INFO [uvicorn.error:93] Finished server process [95299]
+[2025-06-25 14:50:09] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:09] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 14:50:10] INFO [uvicorn.error:83] Started server process [98170]
+[2025-06-25 14:50:10] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:50:10] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:50:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:46] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 14:50:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:54] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 14:50:54] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 14:50:54] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 14:50:54] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 14:50:54] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:50:58] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-b31f118f32bsm11254440a12.3 - gsmtp')
+[2025-06-25 14:50:58] INFO [root:48] SMTP server connection closed.
+[2025-06-25 14:50:58] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 14:50:58] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:45] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/__init__.py'. Reloading...
+[2025-06-25 14:54:45] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:54:45] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:54:45] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:54:45] INFO [uvicorn.error:93] Finished server process [98170]
+[2025-06-25 14:54:46] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:46] INFO [watchfiles.main:308] 3 changes detected
+[2025-06-25 14:54:47] INFO [uvicorn.error:83] Started server process [99194]
+[2025-06-25 14:54:47] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:54:47] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:54:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:56] WARNING [uvicorn.error:55] WatchFiles detected changes in 'run.py'. Reloading...
+[2025-06-25 14:54:56] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:54:56] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:54:56] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:54:56] INFO [uvicorn.error:93] Finished server process [99194]
+[2025-06-25 14:54:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 14:54:57] INFO [uvicorn.error:83] Started server process [99278]
+[2025-06-25 14:54:57] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 14:54:57] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 14:55:15] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 14:55:15] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 14:55:15] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 14:55:15] INFO [uvicorn.error:93] Finished server process [99278]
+[2025-06-25 14:55:15] INFO [uvicorn.error:116] Stopping reloader process [92893]
+[2025-06-25 15:02:13] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 15:02:13] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 15:02:13] INFO [uvicorn.error:80] Started reloader process [981] using WatchFiles
+[2025-06-25 15:02:15] INFO [uvicorn.error:83] Started server process [1005]
+[2025-06-25 15:02:15] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:02:15] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:02:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:02:18] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 15:02:18] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:02:19] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 15:02:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:02:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:02:45] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 15:02:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:02:47] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 15:02:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:02:57] INFO [app.routes.upload_jd:45] JD uploaded: AI_engineer.txt, ID: 685c0fa13953dcdace623874
+[2025-06-25 15:02:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:03:37] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 15:03:37] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 15:03:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:03:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:03:43] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:03:43] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 15:03:43] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 15:03:43] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 15:03:44] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:03:44] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:03:53] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:03:53] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 15:03:53] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 15:03:53] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:03:58] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:03:58] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 15:03:58] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:04:07] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:04:07] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:04:13] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:04:13] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 15:04:13] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 15:04:13] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:04:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:04:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:04:17] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-749c883869bsm4745554b3a.105 - gsmtp')
+[2025-06-25 15:04:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:04:17] INFO [root:48] SMTP server connection closed.
+[2025-06-25 15:04:17] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:06:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:10] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/tools/email2.py'. Reloading...
+[2025-06-25 15:06:10] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:06:10] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:06:10] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:06:10] INFO [uvicorn.error:93] Finished server process [1005]
+[2025-06-25 15:06:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:11] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:06:11] INFO [uvicorn.error:83] Started server process [1976]
+[2025-06-25 15:06:11] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:06:11] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:06:11] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:27] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 15:06:27] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:28] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 15:06:29] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:29] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:40] INFO [app.routes.upload_jd:45] JD uploaded: ML_engineer.txt, ID: 685c1080ebcae58dfaf411fd
+[2025-06-25 15:06:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:06:53] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 15:06:54] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 15:06:54] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:00] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:07:00] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 15:07:00] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 15:07:00] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 15:07:00] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:09] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:07:09] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 15:07:09] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 15:07:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:13] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:07:13] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 15:07:13] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 15:07:13] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 15:07:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:21] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:07:21] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 15:07:21] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 15:07:21] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 15:07:21] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:33] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:07:33] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 15:07:33] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 15:07:33] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:39] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:07:39] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 15:07:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:44] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:07:44] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:07:56] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for ML_engineer.txt
+[2025-06-25 15:07:56] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 15:07:56] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:07:56] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:07:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:08:00] INFO [root:37] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:08:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:08:01] INFO [root:48] SMTP server connection closed.
+[2025-06-25 15:08:01] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:08:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:28] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:28] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:35] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/tools/email2.py'. Reloading...
+[2025-06-25 15:10:35] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:10:35] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:10:35] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:10:35] INFO [uvicorn.error:93] Finished server process [1976]
+[2025-06-25 15:10:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:36] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:10:36] INFO [uvicorn.error:83] Started server process [3464]
+[2025-06-25 15:10:36] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:10:36] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:10:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:51] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:10:52] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:10:52] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:11:01] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:11:01] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 15:11:01] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 15:11:01] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:11:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:11:05] ERROR [root:39] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 35, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-315f53da58dsm2162408a91.34 - gsmtp')
+[2025-06-25 15:11:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:11:05] INFO [root:48] SMTP server connection closed.
+[2025-06-25 15:11:05] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:11:55] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:11:55] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:11:55] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:11:55] INFO [uvicorn.error:93] Finished server process [3464]
+[2025-06-25 15:11:55] INFO [uvicorn.error:116] Stopping reloader process [981]
+[2025-06-25 15:14:03] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 15:14:03] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 15:14:03] INFO [uvicorn.error:80] Started reloader process [4265] using WatchFiles
+[2025-06-25 15:14:04] INFO [uvicorn.error:83] Started server process [4273]
+[2025-06-25 15:14:04] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:14:04] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:14:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:14:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:14:08] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 15:14:08] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:14:10] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 15:14:10] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:15:32] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 15:15:32] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 15:15:32] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:15:46] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:15:46] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 15:15:46] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 15:15:46] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 15:15:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:15:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:15:55] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:15:55] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 15:15:55] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 15:15:55] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:16:01] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:16:01] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 15:16:01] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 15:16:01] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 15:16:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:16:07] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:16:07] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 15:16:07] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 15:16:07] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 15:16:07] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:16:17] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:16:17] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 15:16:17] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 15:16:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:16:23] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:16:23] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 15:16:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:17:06] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:17:06] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:17:15] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:17:15] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:17:15] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 15:17:15] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:17:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:17:19] ERROR [root:41] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 37, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-749b5e217bdsm4937837b3a.52 - gsmtp')
+[2025-06-25 15:17:19] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:17:19] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:17:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:17:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:17:58] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:17:58] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:18:38] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:18:39] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:18:39] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:18:44] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:18:44] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:18:44] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 15:18:44] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:18:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:18:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:18:48] ERROR [root:41] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 37, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-237d86e2898sm135546775ad.215 - gsmtp')
+[2025-06-25 15:18:48] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:18:48] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:18:48] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:19:44] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:19:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:19:45] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:20:09] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:20:09] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:20:15] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:20:15] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:20:15] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :xavv ifcd bxiy xmak
+[2025-06-25 15:20:15] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:20:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:20:19] ERROR [root:41] Authentication failed: Check email credentials.
+Traceback (most recent call last):
+  File "/home/shivam/Intern_Work/HiringAntAgent/app/tools/email2.py", line 37, in send_email
+    server.login(from_email, from_password)
+  File "/usr/lib/python3.12/smtplib.py", line 750, in login
+    raise last_exception
+  File "/usr/lib/python3.12/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/usr/lib/python3.12/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-237d83989besm140557675ad.38 - gsmtp')
+[2025-06-25 15:20:19] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:20:19] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:20:19] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:26:04] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:26:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:23] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:23] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/main.py'. Reloading...
+[2025-06-25 15:26:24] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:26:24] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:26:24] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:26:24] INFO [uvicorn.error:93] Finished server process [4273]
+[2025-06-25 15:26:24] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:24] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:26:25] INFO [uvicorn.error:83] Started server process [7011]
+[2025-06-25 15:26:25] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:26:25] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:26:25] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:35] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/__init__.py'. Reloading...
+[2025-06-25 15:26:35] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:26:35] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:26:35] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:26:35] INFO [uvicorn.error:93] Finished server process [7011]
+[2025-06-25 15:26:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:36] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:26:36] INFO [uvicorn.error:83] Started server process [7077]
+[2025-06-25 15:26:36] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:26:36] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:26:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:51] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:51] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/main.py'. Reloading...
+[2025-06-25 15:26:51] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:26:51] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:26:51] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:26:51] INFO [uvicorn.error:93] Finished server process [7077]
+[2025-06-25 15:26:51] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:52] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:26:52] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:26:52] INFO [uvicorn.error:83] Started server process [7168]
+[2025-06-25 15:26:52] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:26:52] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:27:37] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:27:37] WARNING [uvicorn.error:55] WatchFiles detected changes in 'app/tools/email2.py'. Reloading...
+[2025-06-25 15:27:37] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:27:37] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:27:37] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:27:37] INFO [uvicorn.error:93] Finished server process [7168]
+[2025-06-25 15:27:37] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:27:38] INFO [watchfiles.main:308] 2 changes detected
+[2025-06-25 15:27:38] INFO [uvicorn.error:83] Started server process [7346]
+[2025-06-25 15:27:38] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:27:38] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:27:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:28:08] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:28:08] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:28:15] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:28:15] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:28:15] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:28:15] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:28:15] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:28:20] INFO [root:39] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:28:20] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:28:20] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:28:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:28:35] INFO [app.routes.frontend_route:38] Rendering schedule interviews page.
+[2025-06-25 15:28:35] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:28:53] INFO [app.routes.schedule_interviews:60] Updated proposed slots for match 685c12b1b687e4dac95b5605
+[2025-06-25 15:28:53] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:28:53] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:28:53] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:28:53] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:28:57] INFO [root:39] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:28:58] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:28:58] INFO [app.routes.schedule_interviews:71] Sent slot selection email to shivamkumar878758@gmail.com for job AI_engineer.txt
+[2025-06-25 15:28:58] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:29:48] INFO [app.routes.schedule_interviews:102] Candidate confirmed slot for match 685c12b1b687e4dac95b5605: 2025-06-25T21:58:00
+[2025-06-25 15:29:48] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:29:48] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:29:48] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:29:48] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:29:52] INFO [root:39] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:29:53] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:29:53] INFO [app.routes.schedule_interviews:111] Sent interview confirmation to shivamkumar878758@gmail.com for slot 2025-06-25T21:58:00
+[2025-06-25 15:29:53] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:34:53] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:34:53] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:34:53] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:34:53] INFO [uvicorn.error:93] Finished server process [7346]
+[2025-06-25 15:34:53] INFO [uvicorn.error:116] Stopping reloader process [4265]
+[2025-06-25 15:35:36] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 15:35:36] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 15:35:36] INFO [uvicorn.error:80] Started reloader process [9018] using WatchFiles
+[2025-06-25 15:35:37] INFO [uvicorn.error:83] Started server process [9023]
+[2025-06-25 15:35:37] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 15:35:37] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 15:35:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:41] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 15:35:42] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:42] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:47] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 15:35:48] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:48] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:54] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 15:35:55] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:35:55] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:36:09] INFO [app.routes.upload_jd:45] JD uploaded: AI_engineer.txt, ID: 685c17690740cc50b9ac0f8b
+[2025-06-25 15:36:09] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:36:57] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 15:36:57] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:36:59] INFO [app.routes.frontend_route:26] Rendering student form.
+[2025-06-25 15:36:59] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:02] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 15:38:02] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 15:38:03] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:03] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:07] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:38:07] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 15:38:07] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 15:38:07] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 15:38:07] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:16] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:38:16] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 15:38:16] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 15:38:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:17] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:22] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 15:38:22] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 15:38:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:38:22] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:39:05] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 15:39:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:39:21] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 15:39:21] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:39:21] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:39:21] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:39:21] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:39:25] INFO [root:39] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:39:26] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:39:26] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:39:26] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 15:39:26] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:39:49] INFO [app.routes.frontend_route:38] Rendering schedule interviews page.
+[2025-06-25 15:39:49] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:40:14] INFO [app.routes.schedule_interviews:60] Updated proposed slots for match 685c17ee0740cc50b9ac0f8f
+[2025-06-25 15:40:14] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:40:14] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:40:14] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:40:14] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:40:18] INFO [root:39] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:40:19] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:40:19] INFO [app.routes.schedule_interviews:71] Sent slot selection email to shivamkumar878758@gmail.com for job AI_engineer.txt
+[2025-06-25 15:40:19] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:40:36] INFO [app.routes.schedule_interviews:102] Candidate confirmed slot for match 685c17ee0740cc50b9ac0f8f: 2025-06-26T21:10:00
+[2025-06-25 15:40:36] INFO [app.tools.email2:16] Entering the send email function
+[2025-06-25 15:40:36] INFO [app.tools.email2:31] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 15:40:36] INFO [app.tools.email2:34] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 15:40:36] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:40:40] INFO [root:39] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 15:40:41] INFO [root:50] SMTP server connection closed.
+[2025-06-25 15:40:41] INFO [app.routes.schedule_interviews:111] Sent interview confirmation to shivamkumar878758@gmail.com for slot 2025-06-26T21:10:00
+[2025-06-25 15:40:41] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 15:53:13] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 15:53:13] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 15:53:13] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 15:53:13] INFO [uvicorn.error:93] Finished server process [9023]
+[2025-06-25 15:53:13] INFO [uvicorn.error:116] Stopping reloader process [9018]
+[2025-06-25 16:44:01] INFO [uvicorn.error:318] Will watch for changes in these directories: ['/home/shivam/Intern_Work/HiringAntAgent']
+[2025-06-25 16:44:01] INFO [uvicorn.error:524] Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[2025-06-25 16:44:01] INFO [uvicorn.error:80] Started reloader process [21569] using WatchFiles
+[2025-06-25 16:44:02] INFO [uvicorn.error:83] Started server process [21592]
+[2025-06-25 16:44:02] INFO [uvicorn.error:48] Waiting for application startup.
+[2025-06-25 16:44:02] INFO [uvicorn.error:62] Application startup complete.
+[2025-06-25 16:44:02] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:44:47] INFO [app.routes.frontend_route:14] Rendering home page.
+[2025-06-25 16:44:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:44:48] INFO [app.routes.frontend_route:32] Rendering provider form.
+[2025-06-25 16:44:49] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:44:49] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:04] INFO [app.routes.upload_jd:45] JD uploaded: ML_engineer.txt, ID: 685c279024de6ce27e4ddf19
+[2025-06-25 16:45:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:05] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:12] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 16:45:12] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 16:45:13] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:13] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:20] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 16:45:20] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 16:45:20] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 16:45:20] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 16:45:20] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:30] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 16:45:30] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 16:45:30] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 16:45:30] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:39] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 16:45:39] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 16:45:39] INFO [app.tools.parse_resume:67] Entering the resume parser function
+[2025-06-25 16:45:39] INFO [app.tools.parse_resume:47] ✅ Extracted text from PDF bytes
+[2025-06-25 16:45:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:40] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:46] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 16:45:46] INFO [app.tools.parse_resume:82] ✅ Successfully parsed resume
+[2025-06-25 16:45:46] INFO [app.tools.JD_parser:33] Entering the JD Parser function
+[2025-06-25 16:45:46] INFO [app.tools.JD_parser:48] ℹ️ Binary input was plain text, decoded successfully
+[2025-06-25 16:45:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:47] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:45:56] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 16:45:56] INFO [app.tools.JD_parser:74] ✅ Successfully parsed JD JSON.
+[2025-06-25 16:45:56] INFO [app.tools.jd_json_jobmatching:32] 📩 Invoking LLM with resume and job description JSON.
+[2025-06-25 16:45:56] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:01] INFO [httpx:1025] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+[2025-06-25 16:46:01] INFO [app.tools.jd_json_jobmatching:43] ✅ Successfully parsed LLM response.
+[2025-06-25 16:46:01] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:23] INFO [app.routes.frontend_route:79] Rendering email form page.
+[2025-06-25 16:46:24] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:24] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:32] INFO [app.routes.email_route:56] Shortlisting candidate: shivamkumar878758@gmail.com for AI_engineer.txt
+[2025-06-25 16:46:32] INFO [app.tools.email2:14] Entering the send email function
+[2025-06-25 16:46:32] INFO [app.tools.email2:29] this is from email :shivamkumar878758@gmail.com and this is pass :nrgrsavnbiamkiji
+[2025-06-25 16:46:32] INFO [app.tools.email2:32] Connecting to SMTP server smtp.gmail.com:587
+[2025-06-25 16:46:33] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:33] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:37] INFO [root:37] Email sent successfully to shivamkumar878758@gmail.com
+[2025-06-25 16:46:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:46:38] INFO [root:48] SMTP server connection closed.
+[2025-06-25 16:46:38] INFO [app.routes.email_route:78] Emails sent successfully for 1 matches.
+[2025-06-25 16:46:38] INFO [watchfiles.main:308] 1 change detected
+[2025-06-25 16:59:00] INFO [uvicorn.error:263] Shutting down
+[2025-06-25 16:59:00] INFO [uvicorn.error:67] Waiting for application shutdown.
+[2025-06-25 16:59:00] INFO [uvicorn.error:76] Application shutdown complete.
+[2025-06-25 16:59:00] INFO [uvicorn.error:93] Finished server process [21592]
+[2025-06-25 16:59:00] INFO [uvicorn.error:116] Stopping reloader process [21569]

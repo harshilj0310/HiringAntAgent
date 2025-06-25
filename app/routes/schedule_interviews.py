@@ -47,18 +47,6 @@ async def handle_schedule_interviews(request: Request):
             job_title = jd.get("job_title", jd.get("filename", "Unknown"))
             candidate_email = resume.get("email")
 
-            # DB update
-            matches_collection.update_one(
-                {"_id": ObjectId(match_id)},
-                {"$set": {
-                    "interview_status": "SLOT_PROPOSED",
-                    "interview_details": {
-                        "proposed_slots": slot_objects
-                    }
-                }}
-            )
-            logger.info(f"Updated proposed slots for match {match_id}")
-
             # Email to candidate
             confirm_link = f"{CONFIG['host_url']}/confirm-slot/{match_id}"
             subject = CONFIG["email_templates"]["slot_selection"]["subject"].format(job=job_title)
@@ -67,11 +55,23 @@ async def handle_schedule_interviews(request: Request):
                 confirm_link=confirm_link
             )
 
-            send_email(from_email, candidate_email, subject, body)
-            logger.info(f"Sent slot selection email to {candidate_email} for job {job_title}")
+            success = send_email(from_email, candidate_email, subject, body)
+            if success:
+                matches_collection.update_one(
+                    {"_id": ObjectId(match_id)},
+                    {"$set": {
+                        "interview_status": "SLOT_PROPOSED",
+                        "interview_details": {
+                            "proposed_slots": slot_objects
+                        }
+                    }}
+                )
+                logger.info(f"Updated proposed slots for match {match_id}")
+                logger.info(f"Sent slot selection email to {candidate_email} for job {job_title}")
+            else:
+                logger.warning(f"Email failed to send to {candidate_email}. DB not updated.")
 
-    return PlainTextResponse("Slots shared with candidates successfully.", status_code=200)
-
+    return PlainTextResponse("Slots shared with candidates (if email succeeded).", status_code=200)
 
 @interview_router.post("/confirm-slot/{match_id}")
 async def handle_confirm_slot(match_id: str, request: Request):
@@ -92,22 +92,31 @@ async def handle_confirm_slot(match_id: str, request: Request):
     job_title = jd.get("job_title", jd.get("filename", "Unknown"))
     candidate_email = resume.get("email")
 
-    matches_collection.update_one(
-        {"_id": ObjectId(match_id)},
+    # Perform DB update and verify success
+    update_result = matches_collection.update_one(
+        {"_id": ObjectId(match_id), "interview_status": "SLOT_PROPOSED"},  # precondition
         {"$set": {
             "interview_status": "SCHEDULED",
             "interview_details.confirmed_slot": selected_slot
         }}
     )
-    logger.info(f"Candidate confirmed slot for match {match_id}: {selected_slot}")
 
-    subject = CONFIG["email_templates"]["interview_confirmation"]["subject"].format(job=job_title)
-    body = CONFIG["email_templates"]["interview_confirmation"]["body"].format(
-        job=job_title,
-        slot=selected_slot
-    )
+    if update_result.modified_count == 1:
+        logger.info(f"Candidate confirmed slot for match {match_id}: {selected_slot}")
 
-    send_email(CONFIG["default_sender_email"], candidate_email, subject, body)
-    logger.info(f"Sent interview confirmation to {candidate_email} for slot {selected_slot}")
+        subject = CONFIG["email_templates"]["interview_confirmation"]["subject"].format(job=job_title)
+        body = CONFIG["email_templates"]["interview_confirmation"]["body"].format(
+            job=job_title,
+            slot=selected_slot
+        )
 
-    return PlainTextResponse("Your slot has been confirmed. A confirmation email has been sent.", status_code=200)
+        success = send_email(CONFIG["default_sender_email"], candidate_email, subject, body)
+        if success:
+            logger.info(f"Sent interview confirmation to {candidate_email} for slot {selected_slot}")
+            return PlainTextResponse("Your slot has been confirmed. A confirmation email has been sent.", status_code=200)
+        else:
+            logger.warning("Email failed to send after DB update.")
+            return PlainTextResponse("Slot confirmed, but failed to send confirmation email.", status_code=500)
+    else:
+        logger.error(f"Failed to update interview slot for match {match_id}.")
+        return PlainTextResponse("Failed to confirm your slot. Please try again.", status_code=500)

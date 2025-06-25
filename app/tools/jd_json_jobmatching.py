@@ -6,14 +6,11 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from app.config import CONFIG
 
-load_dotenv()
+load_dotenv(override=True)
 
 MODEL_NAME = os.getenv("OPENAI_MODEL_NAME", "gpt-4")
 MODEL_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", 0))
 MAX_TOKENS = int(os.getenv("OPENAI_MAX_TOKENS", 2048))
-
-log_file = os.path.join(os.path.dirname(__file__), "..", "logs", "matcher.log")
-os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
 logger = logging.getLogger(__name__)
 

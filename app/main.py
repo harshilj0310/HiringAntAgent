@@ -12,7 +12,7 @@ from app.logs.logging_config import setup_logging
 def create_app():
     app = FastAPI()
     setup_logging()
-    load_dotenv()
+    load_dotenv(override=True)
 
     # Include routers
     app.include_router(frontend_router)

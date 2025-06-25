@@ -8,7 +8,7 @@ from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from app.config import CONFIG
 
-load_dotenv()
+load_dotenv(override=True)
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +64,7 @@ def extract_text_from_pdf(pdf_path: str) -> str:
         raise ValueError("Unable to extract text from PDF.")
 
 def parse_resume(input_data: bytes | str) -> dict:
+    logger.info("Entering the resume parser function")
     try:
         if isinstance(input_data, bytes):
             resume_text = extract_text_from_pdf_bytes(input_data)

@@ -5,11 +5,9 @@ import time
 from bson.objectid import ObjectId
 
 from app.utils import process_matching_single
-from app.db import jds_collection, matches_collection, fs
-from app.connectors.factory import get_resume_connector
+from app.db import jds_collection, matches_collection, fs, resumes_collection
 
 matched_hashes = set()
-
 
 def generate_resume_hash(resume):
     email = resume.get("email", "")
@@ -37,8 +35,7 @@ def get_file_content(file_id):
 
 
 def perform_resume_jd_matching():
-    resume_connector = get_resume_connector()
-    resumes = resume_connector.get_all_resumes()
+    resumes = list(resumes_collection.find())
     jds = list(jds_collection.find())
 
     for resume in resumes:

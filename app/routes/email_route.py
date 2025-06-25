@@ -54,15 +54,20 @@ async def send_emails(
             subject = CONFIG["email_templates"]["shortlist"]["subject"].format(job=job)
             body = CONFIG["email_templates"]["shortlist"]["body"].format(job=job)
             logger.info(f"Shortlisting candidate: {email} for {job}")
-            send_email(from_email, email, subject, body)
+            
+            success = send_email(from_email, email, subject, body)
 
-            matches_collection.update_one(
-                {"_id": match["_id"]},
-                {"$set": {
-                    "email_status": "Sent",
-                    "interview_status": "PENDING"
-                }}
-            )
+            if success:
+                matches_collection.update_one(
+                    {"_id": match["_id"]},
+                    {"$set": {
+                        "email_status": "Sent",
+                        "interview_status": "PENDING"
+                    }}
+                )
+            else:
+                logger.warning(f"Email sending failed for {email}, DB not updated.")
+
         else:
             subject = CONFIG["email_templates"]["rejection"]["subject"].format(job=job)
             body = CONFIG["email_templates"]["rejection"]["body"].format(job=job)

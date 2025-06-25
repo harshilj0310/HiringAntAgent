@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from io import BytesIO
 from app.config import CONFIG
 
-load_dotenv()
+load_dotenv(override=True)
 
 MODEL_NAME = os.getenv("OPENAI_MODEL_NAME", "gpt-4")
 MODEL_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", 0))
@@ -30,6 +30,7 @@ llm = ChatOpenAI(
 jd_parsing_chain = jd_parsing_prompt | llm
 
 def parse_job_description(jd_input):
+    logger.info("Entering the JD Parser function")
     jd_text = ""
 
     try:
